@@ -1,0 +1,19 @@
+{
+"short_name": "Chow420",
+	"name" : "Chow420",
+	"short_name" : "Chow420",
+	"description" : "Shop Chewy for the best pet supplies ranging from pet food, toys and treats to litter, aquariums, and pet supplements plus so much more! If you have a pet-or soon will-you've come to the right place.",
+	"start_url" : "www.chow420.com",
+	"scope" : "/",
+	"display" : "standalone",
+	"background_color": "#fff",
+	"orientation" : "any",
+	"lang" : "English",
+	"icon":[
+		{
+		"src": "assets/front/images/chow420-512.jpg",
+		"sizes": "512x512",
+		"tyle"> "image/jpg"
+		}
+	]
+}

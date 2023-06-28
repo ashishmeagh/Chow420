@@ -1,0 +1,2333 @@
+26-11-2019
+
+ALTER TABLE `product_rating_review` CHANGE `updated_at` `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE `product_rating_review` CHANGE `customer_id` `buyer_id` INT(11) NOT NULL;
+
+ALTER TABLE `product_rating_review` ADD `product_id` INT NOT NULL AFTER `id`; 
+
+27-11-2019
+
+CREATE TABLE `order_product_details` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `order_id` int(11) NOT NULL,
+ `product_id` int(11) NOT NULL,
+ `quantity` int(11) NOT NULL,
+ `unit_price` decimal(16,6) NOT NULL,
+ `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ `updated_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+ALTER TABLE `order_product_details` CHANGE `order_id` `order_no` INT(11) NOT NULL;
+
+ALTER TABLE `order_details` ADD `seller_id` INT NOT NULL AFTER `buyer_id`;
+
+
+CREATE TABLE `order_addresses` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `user_id` int(11) NOT NULL,
+ `order_id` varchar(255) NOT NULL,
+ `shipping_first_name` varchar(255) NOT NULL,
+ `shipping_last_name` varchar(255) NOT NULL,
+ `shipping_email` varchar(255) NOT NULL,
+ `shipping_mobile` varchar(17) NOT NULL,
+ `shipping_address1` text NOT NULL,
+ `shipping_address2` text NOT NULL,
+ `shipping_city` int(11) NOT NULL,
+ `shipping_state` int(11) NOT NULL,
+ `shipping_country` int(11) NOT NULL,
+ `shipping_zipcode` varchar(15) NOT NULL,
+ `billing_company_name` varchar(60) NOT NULL,
+ `billing_address1` text NOT NULL,
+ `billing_address2` text NOT NULL,
+ `billing_state` int(11) NOT NULL,
+ `billing_city` int(11) NOT NULL,
+ `billing_country` int(11) NOT NULL,
+ `billing_zipcode` varchar(20) NOT NULL,
+ `billing_phone` varchar(20) NOT NULL,
+ `billing_email` varchar(255) NOT NULL,
+ `created_at` datetime NOT NULL,
+ `updated_at` datetime NOT NULL,
+ `deleted_at` datetime NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4
+
+
+-------02-12-2019------
+
+ALTER TABLE `transaction_details` ADD `order_id` INT NOT NULL AFTER `user_id`;
+
+-----------10-12-2019----------------------------------
+
+CREATE TABLE `age_restriction` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `age` varchar(255) NOT NULL,
+ `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+
+
+date 27/8/2020  (developer priyanka)
+
+1)INSERT INTO `roles` (`id`, `slug`, `name`, `permissions`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'sub_admin', 'Sub Admin', NULL, '2019-02-15 04:40:31', '2019-02-15 04:40:31', NULL);
+
+2) INSERT INTO `static_pages` (`id`, `page_slug`, `is_active`, `orderby`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'chowcms', '1', '8', '2020-04-10 10:36:08', '2020-07-31 13:19:40', NULL);
+
+3) INSERT INTO `static_pages_translation` (`id`, `static_page_id`, `page_title`, `page_desc`, `locale`, `meta_keyword`, `meta_desc`) VALUES (NULL, '21', 'ChowCMS', '<p>ChowCMS</p>', 'en', 'ChowCMS', '<p>ChowCMS</p>');
+
+
+4) CREATE TABLE `modules` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `module_slug` varchar(255) DEFAULT NULL,
+ `status` tinyint(4) DEFAULT NULL COMMENT '0=>block,1=>active',
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+ `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+
+
+5)CREATE TABLE `module_sub_admin_mapping` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `user_id` int(11) NOT NULL,
+ `module_id` int(11) NOT NULL,
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+ `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+Open new phpMyAdmin window
+
+
+6) ALTER TABLE `modules` CHANGE `status` `status` TINYINT(4) NULL DEFAULT '1' COMMENT '0=>block,1=>active';
+
+
+
+date 29/8/2020 (developer priyanka)
+
+7) ALTER TABLE `modules` ADD `module_name` VARCHAR(255) NULL DEFAULT NULL AFTER `module_slug`;
+
+
+8)CREATE TABLE `sub_admin_activity_log` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `user_id` int(11) DEFAULT NULL,
+ `title` int(11) NOT NULL,
+ `message` int(11) NOT NULL,
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+ `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+
+9)ALTER TABLE `sub_admin_activity_log` ADD `action` VARCHAR(255) NULL DEFAULT NULL AFTER `message`;
+
+10 )ALTER TABLE `sub_admin_activity_log` CHANGE `title` `title` VARCHAR(255) NULL DEFAULT NULL;
+
+   ALTER TABLE `sub_admin_activity_log` CHANGE `message` `message` VARCHAR(255) NULL DEFAULT NULL;
+
+------------------------------------------------------------------
+
+INSERT INTO `static_pages` (`id`, `page_slug`, `is_active`, `orderby`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'chowcms', '1', '8', '2020-04-10 10:36:08', '2020-07-31 13:19:40', NULL);
+INSERT INTO `static_pages_translation` (`id`, `static_page_id`, `page_title`, `page_desc`, `locale`, `meta_keyword`, `meta_desc`) VALUES (NULL, '21', 'ChowCMS', '<p>ChowCMS</p>', 'en', 'ChowCMS', '<p>ChowCMS</p>');
+
+
+-----------------------------29-aug-20--------------------------------------------
+
+ALTER TABLE `product` CHANGE `is_chows_choice` `is_chows_choice` INT(11) NULL DEFAULT '0' COMMENT '0=\"No\",1=\"Yes\"';
+
+
+-------------------------------31-aug-20------------------------------------------
+
+
+ALTER TABLE `states` ADD `is_documents_required` INT(11) NOT NULL DEFAULT '0' AFTER `is_active`;
+
+ALTER TABLE `states` CHANGE `is_documents_required` `is_documents_required` INT(11) NULL DEFAULT '0' COMMENT '0=\"Not Required\",1=\"Required\"';
+
+ALTER TABLE `seller` ADD `note_doc_reject` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER `note`;
+
+ALTER TABLE `states` ADD `required_documents` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL AFTER `is_documents_required`;
+
+CREATE TABLE `seller_documents` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `document_title` varchar(255) NOT NULL,
+ `document` text CHARACTER SET utf8 NOT NULL,
+ `seller_id` int(11) NOT NULL,
+ `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=latin1
+
+
+---------------------------2-sept-20------------------------------------------------
+UPDATE `email_template` SET `template_subject` = 'Order ##ORDER_NO## Delivered', `deleted_at` = NULL WHERE `email_template`.`id` = 78;
+ 
+    ----for email template in order deliverd cron job ---done on both
+
+---------------------------------------------------------------------
+
+
+
+date  4/8/2020 (priyanka)
+
+UPDATE `modules` SET `module_name` = 'Dispensaries' WHERE `modules`.`id` = 29;
+
+
+ALTER TABLE `product` ADD `avg_review` DECIMAL NULL DEFAULT NULL AFTER `avg_rating`;
+
+ALTER TABLE `product` CHANGE `avg_rating` `avg_rating` VARCHAR(50) NULL DEFAULT NULL;
+
+ALTER TABLE `product` ADD `avg_rating` VARCHAR(50) NULL DEFAULT NULL AFTER `product_video_url`;
+
+
+
+
+date 5/8/2020 (priyanka)
+
+UPDATE `email_template` SET `template_html` = '<h2>Login to Your Account</h2>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;Hello<strong> ##FIRST_NAME##, </strong></p>\r\n<div style=\"text-align: left;\"><br />Your account is created by&nbsp; ##APP_URL##.</div>\r\n<div style=\"text-align: left;\">&nbsp;</div>\r\n<div style=\"text-align: left;\">You are successfully register with us. and your login details are,&nbsp;</div>\r\n<div style=\"text-align: left;\">&nbsp;</div>\r\n<div style=\"text-align: left;\">Login details</div>\r\n<div style=\"text-align: left;\">&nbsp;</div>\r\n<div style=\"text-align: left;\">Email&nbsp; = ##EMAIL##&nbsp;</div>\r\n<div style=\"text-align: left;\">Password = ##PASSWORD##</div>\r\n<div>&nbsp;</div><div>&nbsp;</div>\r\n<div style=\"text-align: left;\">Login : ##LOGIN_URL##</div>\r\n<div>&nbsp;</div>\r\n<div>Thanks and Regards,<br />&nbsp;##APP_URL##</div>' WHERE `email_template`.`id` = 34;
+
+
+
+date 08 Sept 2020 (Ashwini)
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Documents Approval mail to seller', 'Profile Documents Approval', 'Chow420', 'team@chow420.com', '<p>Dear ##SELLER_NAME##,</p>\r\n<p>##ADMIN_NAME## has approved your profile documents.</p>\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br/>\r\n##APP_NAME## Team&nbsp; &nbsp;</p>\r\n<p>&nbsp;</p>', '##ADMIN_NAME##~##SELLER_NAME##~##APP_NAME##', NULL, NULL, NULL);
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Documents Rejection mail to seller', 'Profile Documents Rejection', 'Chow420', 'team@chow420.com', '<p>Dear ##SELLER_NAME##,</p>\r\n<p>##ADMIN_NAME## has rejected your profile documents.</p>\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br/>\r\n##APP_NAME## Team&nbsp; &nbsp;</p>\r\n<p>&nbsp;</p>', '##ADMIN_NAME##~##SELLER_NAME##~##APP_NAME##', NULL, NULL, NULL);
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Documents uploaded mail to admin', 'Profile Documents Uploaded', 'Chow420', 'team@chow420.com', '<p>Dear ##ADMIN_NAME##,</p>\r\n<p>Dispensary ##SELLER_NAME## has uploaded profile documents for verification.</p>\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br/>\r\n##APP_NAME## Team&nbsp; &nbsp;</p>\r\n<p>&nbsp;</p>', '##ADMIN_NAME##~##SELLER_NAME##~##APP_NAME##', NULL, NULL, NULL)
+
+
+UPDATE `email_template` SET `template_html` = '<p>Dear ##ADMIN_NAME##,</p>\r\n<p>Dispensary ##SELLER_NAME## has uploaded profile documents for verification.</p>\r\n<p>&nbsp; <strong>Please click on below button to view details.</strong></p>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #b833cc; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br />##APP_NAME## Team&nbsp; &nbsp;</p>\r\n<p>&nbsp;</p>', `deleted_at` = NULL, `created_at` = NULL WHERE `email_template`.`id` = 132;
+
+UPDATE `email_template` SET `template_variables` = '##ADMIN_NAME##~##SELLER_NAME##~##APP_NAME##~##REASON##', `deleted_at` = NULL, `created_at` = NULL WHERE `email_template`.`id` = 131;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Dear ##USER_NAME##,</p>\r\n<p>Dispensary ##SELLER_NAME## has uploaded profile documents for verification.</p>\r\n<p>&nbsp; <strong>Please click on below button to view details.</strong></p>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #b833cc; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br />##APP_NAME## Team&nbsp; &nbsp;</p>\r\n<p>&nbsp;</p>', `template_variables` = '##ADMIN_NAME##~##SELLER_NAME##~##APP_NAME##~##USER_NAME##', `deleted_at` = NULL, `created_at` = NULL WHERE `email_template`.`id` = 132;
+
+
+
+date 8 Sept 2020 (priyanka)
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Drop Shipper Mail', 'Drop Shipper Mail', 'Chow420', 'team@chow420.com', '<p>Hello ##USER_NAME##<br/>&nbsp; &nbsp;<br />You have been added in ##SITE_URL## for product <strong>##PRODUCT_NAME##</strong></p>\r\n\r\n<p><br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp; <br /><br />Thanks and Regards,<br />##SITE_URL##</p>', '##USER_NAME##~##SITE_URL##~##PRODUCT_NAME##', NULL, '2016-05-06 03:41:18', '2020-01-20 15:54:34');
+
+
+UPDATE `email_template` SET `template_variables` = '##USER_NAME##~##APP_NAME##~##PRODUCT_NAME##' WHERE `email_template`.`id` = 133;
+
+UPDATE `email_template` SET `template_variables` = '##USER_NAME##~##APP_NAME##~##PRODUCT_NAME##~##PRODUCT_URL##' WHERE `email_template`.`id` = 133;
+
+UPDATE `email_template` SET `template_html` = '<p>Hello ##USER_NAME##<br/>&nbsp; &nbsp;<br />You have been added as drop shipper in ##APP_NAME## for <strong><a href=\"##PRODUCT_URL##\">##PRODUCT_NAME##</strong></a></p> <p><br/>&nbsp;&nbsp;</p> <p>&nbsp;<br />Thanks and Regards,<br />##APP_NAME##</p>' WHERE `email_template`.`id` = 133;
+
+
+UPDATE `email_template` SET `template_subject` = 'New product add mail' WHERE `email_template`.`id` = 133;
+
+UPDATE `email_template` SET `template_subject` = 'Drop Shipping Email' WHERE `email_template`.`id` = 133;
+
+
+
+-----------------------11-sept-20--------------------------
+
+ALTER TABLE `order_product_details` ADD `dropshipper_price` DECIMAL(16,6) NULL DEFAULT NULL AFTER `dropshipper_id`;
+
+--------------------------15-sept-20-------------------------------------
+
+ALTER TABLE `site_settings` ADD `pixelcode` TEXT NULL DEFAULT NULL AFTER `event_status`;
+
+ALTER TABLE `site_settings` ADD `pixelcode2` TEXT NULL DEFAULT NULL AFTER `pixelcode`;
+
+
+---------------------------17-sept-20-----------------------------------------------
+
+ALTER TABLE `order_product_details` ADD `age_restriction` VARCHAR(20) NULL DEFAULT NULL AFTER `dropshipper_price`;
+
+ALTER TABLE `order_details` ADD `buyer_age_restrictionflag` VARCHAR(25) NOT NULL DEFAULT '0' AFTER `withdraw_request_id`;
+
+
+-----------------------------21-sept-20---------------------------------
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Age Verification Email to buyer', 'Age Verification Email', 'Chow420', 'team@chow420.com', '<p>Hello ##USER_NAME##<br/>&nbsp; &nbsp;<br /> Please click the link below to further verify your age for the order to be shipped. This is the only time you will be required to verify your age on Chow420. <br/>\r\n<a href=\"##AGE_URL##\">click here</strong></a></p> <p><br/>&nbsp;&nbsp;</p> <p>&nbsp;<br />Thanks and Regards,<br />##APP_NAME##</p>', '##USER_NAME##~##APP_NAME####AGE_URL##', NULL, '2016-05-06 03:41:18', '2020-01-20 15:54:34');
+
+UPDATE `email_template` SET `template_html` = '<p>Hello ##USER_NAME##<br/>&nbsp; &nbsp;<br /> Please click the link below to further verify your age for the order to be shipped. This is the only time you will be required to verify your age on Chow420. <br/>\r\n&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"##AGE_URL##\">Click here</strong></a></p> <p><br/>&nbsp;&nbsp;</p> <p>&nbsp;<br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 134;
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Ship Order Age Restricted Email To Seller', 'Ship order ##ORDER_NO## ', 'Chow420', 'team@chow420.com', '<p>Dear ##USER_NAME##,</p>\r\n<p>Customer age-verification has been approved, you can now ship order ##ORDER_NO##&nbsp; Please login and go to your ongoing orders to fulfill this order.</p>\r\n<p>&nbsp;</p>\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br />##APP_NAME## Team&nbsp; &nbsp;</p>\r\n<p>&nbsp;</p>', '##USER_NAME##~##ORDER_NO##~##APP_NAME##', NULL, NULL, '2020-08-10 01:32:38');
+
+UPDATE `email_template` SET `template_html` = '<p>Dear ##USER_NAME##,</p>\r\n<p>Customer age-verification has been approved, you can now ship order ##ORDER_NO##&nbsp; Please login and go to your ongoing orders to fulfill this order.</p>\r\n<p> <a href=\"##SELLER_URL##\">Please click here to ship the order </a></p>\r\n<p>&nbsp;</p>\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br />##APP_NAME## Team&nbsp; &nbsp;</p>\r\n<p>&nbsp;</p>', `template_variables` = '##USER_NAME##~##ORDER_NO##~##APP_NAME##~##SELLER_URL##', `deleted_at` = NULL, `created_at` = NULL WHERE `email_template`.`id` = 135;
+
+
+-----------------------------22-sept-20--------------------------------
+
+UPDATE `email_template` SET `template_subject` = 'Pending age-verification for order ##ORDER_NO##', `template_html` = '<p>Hello ##USER_NAME##<br/>&nbsp; &nbsp;<br /> Please click the link below to further verify your age for the order ##ORDER_NO## to be shipped. This is the only time you will be required to verify your age on Chow420. <br/>\r\n&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"##AGE_URL##\">Click here</strong></a></p> <p><br/>&nbsp;&nbsp;</p> <p>&nbsp;<br />Thanks and Regards,<br />##APP_NAME##</p>', `template_variables` = '##USER_NAME##~##APP_NAME####AGE_URL##~##ORDER_NO##', `deleted_at` = NULL WHERE `email_template`.`id` = 134; 
+
+
+
+-----------------------------5-oct-20--remaintoupload-both--------cancelled-----
+
+ALTER TABLE `static_pages_translation` ADD `menuin_footer` INT(11) NULL DEFAULT '0' AFTER `meta_desc`;----cancelled
+
+
+ALTER TABLE `withdraw_request` ADD `admin_commission` DECIMAL(5,2) NULL DEFAULT NULL AFTER `paypal_email`, ADD `seller_commission` DECIMAL(5,2) NULL DEFAULT NULL AFTER `admin_commission`; ------ for wallet issue solved 
+
+----uploaded on live
+
+
+
+
+ALTER TABLE `product` ADD `is_outofstock` TINYINT(11) NOT NULL DEFAULT '0' AFTER `avg_review`;
+----------uploaded on live----
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Product marked as out of stock', 'Product marked as out of stock', 'Chow420', 'team@chow420.com', '<p>Hello&nbsp; ##USER_NAME##,<br /><br />Admin <strong>##ADMIN_NAME##</strong> has made your product : <strong>##PRODUCT_NAME##</strong> as out of stock.</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #b833cc; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', '##USER_EMAIL##~##USER_NAME##~##SITE_LINK##~##URL##~##SUBJECT##~##PRODUCT_NAME##~##ADMIN_NAME##~##APP_NAME##', NULL, '2016-05-18 08:11:57', '2020-08-04 09:31:58');
+
+----------uploaded on live----
+
+ALTER TABLE `users` ADD INDEX(`email`);
+ALTER TABLE `users` ADD INDEX(`first_name`);
+ALTER TABLE `users` ADD INDEX(`last_name`);
+ALTER TABLE `users` ADD INDEX(`phone`);
+ALTER TABLE `product` ADD INDEX(`product_name`);
+ALTER TABLE `product` ADD INDEX(`unit_price`);
+ALTER TABLE `product` ADD INDEX(`price_drop_to`);
+ALTER TABLE `first_level_category` ADD INDEX(`product_type`);
+ALTER TABLE `second_level_category` ADD INDEX(`name`);
+ALTER TABLE `brands` ADD INDEX(`name`);
+ALTER TABLE `forum_posts` ADD INDEX(`container_id`);
+ALTER TABLE `forum_posts` ADD INDEX(`user_id`);
+ALTER TABLE `forum_comments` ADD INDEX(`post_id`);
+ALTER TABLE `forum_comments` ADD INDEX(`container_id`);
+ALTER TABLE `forum_comments` ADD INDEX(`user_id`);
+ALTER TABLE `forumpost_report` ADD INDEX(`post_id`);
+ALTER TABLE `forumpost_report` ADD INDEX(`user_id`);
+ALTER TABLE `product_news` ADD INDEX(`title`);
+ALTER TABLE `product_news` ADD INDEX(`subtitle`);
+ALTER TABLE `product_rating_review` ADD INDEX(`product_id`);
+ALTER TABLE `product_rating_review` ADD INDEX(`buyer_id`);
+ALTER TABLE `product_rating_review` ADD INDEX(`rating`);
+ALTER TABLE `order_details` ADD INDEX(`order_no`);
+ALTER TABLE `order_details` ADD INDEX(`total_amount`);
+ALTER TABLE `tbl_followers` ADD INDEX(`buyer_id`);
+ALTER TABLE `tbl_followers` ADD INDEX(`seller_id`);
+ALTER TABLE `tbl_membership` ADD INDEX(`name`);
+ALTER TABLE `forum_comment_likedislike` ADD INDEX(`container_id`);
+ALTER TABLE `forum_comment_likedislike` ADD INDEX(`post_id`);
+ALTER TABLE `forum_comment_likedislike` ADD INDEX(`comment_id`);
+ALTER TABLE `forum_comment_likedislike` ADD INDEX(`user_id`);
+ALTER TABLE `favourite_product` ADD INDEX(`buyer_id`);
+ALTER TABLE `favourite_product` ADD INDEX(`product_id`);
+ALTER TABLE `countries` ADD INDEX(`name`);
+ALTER TABLE `states` ADD INDEX(`country_id`);
+ALTER TABLE `states` ADD INDEX(`name`);
+ALTER TABLE `forumpost_like_dislike` ADD INDEX(`container_id`);
+ALTER TABLE `forumpost_like_dislike` ADD INDEX(`post_id`);
+ALTER TABLE `forumpost_like_dislike` ADD INDEX(`user_id`);
+ALTER TABLE `user_refered` ADD INDEX(`user_id`);
+ALTER TABLE `report_product` ADD INDEX(`product_id`);
+ALTER TABLE `report_product` ADD INDEX(`buyer_id`);
+ALTER TABLE `seller_banner_image` ADD INDEX(`seller_id`);
+ALTER TABLE `order_details` ADD INDEX(`buyer_id`);
+ALTER TABLE `order_details` ADD INDEX(`seller_id`);
+ALTER TABLE `order_product_details` ADD INDEX(`order_id`);
+ALTER TABLE `order_product_details` ADD INDEX(`product_id`);
+ALTER TABLE `product_comment` ADD INDEX(`product_id`);
+ALTER TABLE `product_comment` ADD INDEX(`user_id`);
+ALTER TABLE `drop_shipper` ADD INDEX(`seller_id`);
+ALTER TABLE `drop_shipper` ADD INDEX(`product_id`);
+ALTER TABLE `drop_shipper` ADD INDEX(`name`);
+ALTER TABLE `forum_reply_likedislike` ADD INDEX(`container_id`);
+ALTER TABLE `forum_reply_likedislike` ADD INDEX(`post_id`);
+ALTER TABLE `forum_reply_likedislike` ADD INDEX(`reply_id`);
+ALTER TABLE `forum_reply_likedislike` ADD INDEX(`user_id`);
+ALTER TABLE `transaction_details` ADD INDEX(`user_id`);
+ALTER TABLE `transaction_details` ADD INDEX(`total_price`);
+ALTER TABLE `transaction_details` ADD INDEX(`transaction_id`);
+ALTER TABLE `transaction_details` ADD INDEX(`order_no`);
+ALTER TABLE `product_inventory` ADD INDEX(`product_id`);
+ALTER TABLE `product_inventory` ADD INDEX(`remaining_stock`);
+ALTER TABLE `reply` ADD INDEX(`comment_id`);
+ALTER TABLE `reply` ADD INDEX(`user_id`);
+ALTER TABLE `seller` ADD INDEX(`business_name`);
+ALTER TABLE `slider_images` ADD INDEX(`title`);
+ALTER TABLE `slider_images` ADD INDEX(`subtitle`);
+
+----------------------------done on both server
+
+
+-----------------------------15 october 2020------------------------------------------------------------
+
+ALTER TABLE `product` ADD `price_drop_changed` TINYINT NOT NULL DEFAULT '0' AFTER `is_outofstock`;
+
+ALTER TABLE `product` ADD `percent_price_drop` DECIMAL(16,6) NULL DEFAULT '0.00' AFTER `price_drop_to`;
+
+--------------------------------------------------------------------------------------------------------
+
+
+
+
+
+ALTER TABLE `order_details` ADD `note` VARCHAR(225) NULL DEFAULT NULL AFTER `order_status`;
+
+---------------------------------13-oct-20-----------------remain on live---------
+
+CREATE TABLE `coupon` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `user_id` int(11) NOT NULL,
+ `code` varchar(255) NOT NULL,
+ `type` varchar(255) NOT NULL COMMENT '0:singleuse,1:multiuse',
+ `discount` decimal(16,1) DEFAULT NULL,
+ `start_date` date DEFAULT NULL,
+ `end_date` date DEFAULT NULL,
+ `is_active` tinyint(4) NOT NULL DEFAULT 0,
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+ `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4
+
+
+
+
+
+CREATE TABLE `coupon_buyers` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `code` varchar(255) NOT NULL,
+ `type` int(11) NOT NULL,
+ `seller_id` int(11) NOT NULL,
+ `buyer_id` int(11) NOT NULL,
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+ `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4
+
+
+CREATE TABLE `applied_code_buyer` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `seller_id` int(11) NOT NULL,
+ `buyer_id` int(11) NOT NULL,
+ `product_id` int(11) NOT NULL,
+ `tempbag_id` int(11) NOT NULL,
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+ `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+
+
+
+--------------------------20-oct-20------(remain on live)---coupon------------------
+
+ALTER TABLE `order_details` ADD `couponcode` VARCHAR(255) NOT NULL AFTER `buyer_age_restrictionflag`, ADD `coupontype` VARCHAR(255) NOT NULL COMMENT '0:singleuse,1:multiuse ' AFTER `couponcode`, ADD `discount` DECIMAL(16,1) NOT NULL AFTER `coupontype`, ADD `start_date` DATE NOT NULL AFTER `discount`, ADD `end_date` DATE NOT NULL AFTER `start_date`;
+
+--------------------------22-oct-20---------(remain on live)-----coupon---------------
+
+ALTER TABLE `order_details` ADD `couponid` INT(11) NULL DEFAULT NULL AFTER `buyer_age_restrictionflag`;
+
+
+ALTER TABLE `order_details` ADD `seller_discount_amt` DECIMAL(16,4) NOT NULL AFTER `end_date`;
+
+-------------------------------------------------------------------------------------------
+
+ALTER TABLE `product` ADD `spectrum` INT(11) NULL DEFAULT NULL COMMENT '0:Full Spectrum,1:Broad Spectrum,2:Isolate' AFTER `avg_review`;
+ 
+
+ALTER TABLE `users` ADD `date_of_birth` VARCHAR(225) NOT NULL AFTER `last_name`;
+
+
+
+ALTER TABLE `order_details` CHANGE `note` `note` LONGTEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+
+
+-----------------------------19-oct-20------------ashwini qurys-----done on both-------------
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES ('138', 'order place email to seller for dropship', 'Dropship Order ##order_no## for ##BUSINESS_NAME##', 'Chow420', 'team@chow420.com', '<p>Dear ##SELLER_NAME##,</p>\r\n<p>New order has been placed by ##BUYER_NAME## successfully</p>\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br/>\r\n##APP_NAME## Team&nbsp; &nbsp;</p>\r\n<p>&nbsp;</p>', '##BUYER_NAME##~##SELLER_NAME##~##BUSINESS_NAME##~##APP_NAME##', NULL, NULL, '2020-07-30 01:16:47');
+Template id :- 138
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES ('139', 'Dropship Order', 'New Order ##order_no## Placed For Dropshipper', 'Chow420', 'team@chow420.com', '<p>Dear ##DROPSHIPPER_NAME##,</p>\r\n<p>New order has been placed by ##BUYER_NAME## successfully, Please check attachment for further details</p>\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br/>\r\n##APP_NAME##&nbsp; &nbsp;</p>\r\n<p>&nbsp;</p>', '##BUYER_NAME##~##DROPSHIPPER_NAME##~##APP_NAME##', NULL, NULL, '2020-07-30 01:00:27');
+
+Template id :- 139
+
+
+UPDATE `email_template` SET `template_html` = '<p>Dear ##DROPSHIPPER_NAME##,</p>\r\n<p>New order has been placed by ##BUYER_NAME## successfully.</p>\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br/>\r\n##APP_NAME##&nbsp; &nbsp;</p>\r\n<p>&nbsp;</p>', `deleted_at` = NULL, `created_at` = NULL WHERE `email_template`.`id` = 139;
+
+
+----------------------------------------------19 October 2020------------------------------------------------
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES ('140', 'order place email to seller', 'New Order ##order_no## Placed', 'Chow420', 'team@chow420.com', '<p>Dear ##SELLER_NAME##,</p>\r\n<p>New order has been placed by ##BUYER_NAME## successfully</p>\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br />##APP_NAME##</p>\r\n<p>&nbsp;</p>', '##BUYER_NAME##~##SELLER_NAME##~##APP_NAME##', NULL, NULL, '2020-08-07 07:06:25');
+
+
+Template id :- 140
+
+-------------------------------------------------------------------------------------------------------------
+
+Order note template (22/10/2020)
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Order Note Notification', '##SUBJECT##', 'Chow420', 'team@chow420.com', '<p>Hello&nbsp; ##USER_NAME##,<br /><br />##MESSAGE##</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #b833cc; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', '##USER_EMAIL##~##USER_NAME##~##SITE_LINK##~##MESSAGE##~##URL##~##SUBJECT##', NULL, '2016-05-18 08:11:57', '2020-01-24 19:06:16');
+
+
+
+UPDATE `email_template` SET `template_subject` = 'A note has been added to order' WHERE `email_template`.`id` = 141;
+
+
+
+
+--------------27-oct-20---------------------done on both--------------------------
+
+ALTER TABLE `site_settings` ADD `body_content` TEXT NULL DEFAULT NULL AFTER `pixelcode2`;
+ 
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES ('142', 'Site Settings Updated ', 'Site Settings has been updated.', 'Chow420', 'team@chow420.com', '<p>Hello&nbsp; ##ADMIN_NAME##,<br /><br />Site Settings has been updated.</p>\r\n\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', '##ADMIN_NAME##~##APP_NAME##~##MESSAGE##~##URL##~##SUBJECT##', NULL, '2016-05-18 08:11:57', '2020-01-24 19:06:16');
+
+Template id :- 142
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br />Site Settings has been updated.</p>\r\n\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `template_variables` = '##ADMIN_NAME##~##APP_NAME##~##MESSAGE##~##URL##~##SUBJECT##~##USER_NAME##', `deleted_at` = NULL WHERE `email_template`.`id` = 142;
+UPDATE `email_template` SET `template_subject` = 'Site Settings has been updated by ##UPDATED_BY##', `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br />Site Settings has been updated by ##UPDATED_BY##.</p>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `template_variables` = '##ADMIN_NAME##~##APP_NAME##~##MESSAGE##~##URL##~##SUBJECT##~##USER_NAME##~##UPDATED_BY##', `deleted_at` = NULL WHERE `email_template`.`id` = 142;
+
+
+--------------------------------------------remain on live----done--------------------
+
+
+03 Nov 2020
+
+ALTER TABLE `static_pages_translation` ADD `created_at` TIMESTAMP NULL DEFAULT NULL AFTER `meta_desc`, ADD `updated_at` TIMESTAMP NULL DEFAULT NULL AFTER `created_at`, ADD `deleted_at` TIMESTAMP NULL DEFAULT NULL AFTER `updated_at`;
+
+
+----------------18-nov-20---------------remain on live-----------------------
+
+
+UPDATE `static_pages` SET `page_slug` = 'refund-policy' WHERE `static_pages`.`id` = 22;
+ 
+
+UPDATE `static_pages_translation` SET `page_title` = 'Refund Policy' WHERE `static_pages_translation`.`id` = 22;
+
+-------------------------19-nov-20----------------------------remainonboth-----
+ 
+
+ALTER TABLE `product_news` ADD `button_title2` VARCHAR(255) NULL DEFAULT NULL AFTER `button_url`, ADD `button_url2` TEXT NULL DEFAULT NULL AFTER `button_title2`;
+
+
+
+---------------------------20-nov-20--------------done on both-----------------------------
+
+UPDATE `email_template` SET `template_html` = '<p>Hello ##USER_NAME##<br/>&nbsp; &nbsp;<br /> Please click the link below to further verify your age for the order ##ORDER_NO## to be shipped. This is the only time you will be required to verify your age on Chow420. <br/>\r\n&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"##AGE_URL##\" style=\"background: #b833cc; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\">upload details</strong></a></p> <p><br/>&nbsp;&nbsp;</p> <p>&nbsp;<br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 134; 
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello ##USER_NAME##<br/>&nbsp; &nbsp;<br /> Please click the link below to further verify your age for the order ##ORDER_NO## to be shipped. This is the only time you will be required to verify your age on Chow420. <br/>\r\n&nbsp;&nbsp;&nbsp;&nbsp;<br/><a href=\"##AGE_URL##\" style=\"background: #b833cc; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\">upload details</strong></a></p> <p><br/>&nbsp;&nbsp;</p> <p>&nbsp;<br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 134; 
+
+
+-------------------------------------------------------------------------------
+
+
+
+------------------done on live----------------------------------------------------------
+
+
+CREATE TABLE `spectrum` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `name` varchar(255) NOT NULL,
+ `is_active` int(11) NOT NULL DEFAULT 1,
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+ `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+ `deleted_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+Import spectrum table 
+update product set `spectrum` = 3 WHERE `spectrum`=2
+update product set `spectrum` = 2 WHERE `spectrum`=1
+SELECT spectrum FROM `product` WHERE `spectrum`=0
+update product set `spectrum` = 1 WHERE `spectrum`=0
+
+
+-------------------------24-nov-20---------------done on live-------------
+
+ALTER TABLE `states` ADD `is_buyer_restricted` INT(11) NULL DEFAULT '0' AFTER `required_documents`;
+
+
+ALTER TABLE `states` CHANGE `is_buyer_restricted` `is_buyer_restricted` INT(11) NULL DEFAULT '0' COMMENT '0:No , 1: Required';
+
+-------------------------25-nov-20----------done on both----------------------------
+
+
+
+ALTER TABLE `product` ADD `sku` VARCHAR(255) NULL DEFAULT NULL AFTER `price_drop_changed`;
+
+
+------------------------2-Dec-20------------------remain on live----------------------
+CREATE TABLE `banner_images` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `banner_image1_desktop` text DEFAULT NULL,
+ `banner_image1_mobile` text DEFAULT NULL,
+ `banner_image2_desktop` text DEFAULT NULL,
+ `banner_image2_mobile` text DEFAULT NULL,
+ `banner_image3_desktop` text DEFAULT NULL,
+ `banner_image3_mobile` text DEFAULT NULL,
+ `banner_image4_desktop` text DEFAULT NULL,
+ `banner_image4_mobile` text DEFAULT NULL,
+ `banner_image5_desktop` text DEFAULT NULL,
+ `banner_image5_mobile` text DEFAULT NULL,
+ `banner_image6_desktop` text DEFAULT NULL,
+ `banner_image6_mobile` text DEFAULT NULL,
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+ `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+
+------------------------4-dec-20---------------remain on live--------------------
+
+ALTER TABLE `product_rating_review` ADD `emoji` TEXT NULL DEFAULT NULL AFTER `review`;
+
+
+-------------------------------5-dec-20------------------remain on live------------------------
+
+ALTER TABLE `product_rating_review` ADD `user_name` VARCHAR(255) NULL DEFAULT NULL AFTER `emoji`; 
+
+
+
+------------------------7-dec-20-------remain on live--------------------
+
+ALTER TABLE `users` ADD `is_checkout_signup` INT(11) NOT NULL DEFAULT '0' AFTER `domain_source`;
+
+
+-------------------------8-dec-20----------remain on live-------------------
+
+ALTER TABLE `users` ADD `is_guest_user` INT(11) NOT NULL DEFAULT '0' AFTER `is_checkout_signup`;
+
+--------------------------9-dec-20----------remain on live-------------------
+
+ALTER TABLE `users` ADD `show_passwordmodal_afterlogin` INT(11) NOT NULL DEFAULT '0' AFTER `is_guest_user`;
+
+
+ALTER TABLE `users` ADD `is_password_changed` INT(11) NOT NULL DEFAULT '0' AFTER `show_passwordmodal_afterlogin`;
+
+
+--------------------------11-dec-20--------------remain on live--------------------
+
+ALTER TABLE `site_settings` ADD `event_date_status` ENUM('0','1') NOT NULL DEFAULT '0' AFTER `body_content`;
+
+
+
+-------------------------------14-dec-20---------remain on live-----------
+
+
+ALTER TABLE `banner_images` ADD `banner_image7_desktop` TEXT NULL DEFAULT NULL AFTER `banner_image6_mobile`, ADD `banner_image7_mobile` TEXT NULL DEFAULT NULL AFTER `banner_image7_desktop`, ADD `banner_image8_desktop` TEXT NULL DEFAULT NULL AFTER `banner_image7_mobile`, ADD `banner_image8_mobile` TEXT NULL DEFAULT NULL AFTER `banner_image8_desktop`;
+
+
+
+-----------------------------15-dec-20----------------done on both-------------
+
+
+ALTER TABLE `banner_images` ADD `banner_image1_link1` TEXT NULL AFTER `banner_image8_mobile`, ADD `banner_image2_link2` TEXT NULL AFTER `banner_image1_link1`, ADD `banner_image3_link3` TEXT NULL AFTER `banner_image2_link2`, ADD `banner_image4_link4` TEXT NULL AFTER `banner_image3_link3`, ADD `banner_image5_link5` TEXT NULL AFTER `banner_image4_link4`, ADD `banner_image6_link6` TEXT NULL AFTER `banner_image5_link5`, ADD `banner_image7_link7` TEXT NULL AFTER `banner_image6_link6`, ADD `banner_image8_link8` TEXT NULL AFTER `banner_image7_link7`;
+
+
+-----------------------------17-dec-20----------done on live---------
+
+
+CREATE TABLE `tags` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `title` varchar(255) NOT NULL,
+ `link` text DEFAULT NULL,
+ `is_active` enum('0','1') NOT NULL DEFAULT '0',
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+ `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+ `deleted_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+
+----------------------------23-dec-20---------remain on live---------------
+
+23/12/2020
+
+ALTER TABLE `banner_images` ADD `banner_image9_desktop` TEXT NULL AFTER `banner_image8_mobile`, ADD `banner_image9_mobile` TEXT NULL AFTER `banner_image9_desktop`, ADD `banner_image10_desktop` TEXT NULL AFTER `banner_image9_mobile`, ADD `banner_image10_mobile` TEXT NULL AFTER `banner_image10_desktop`;
+
+
+
+ALTER TABLE `banner_images` ADD `banner_image9_link9` TEXT NULL AFTER `banner_image8_link8`, ADD `banner_image10_link10` TEXT NULL AFTER `banner_image9_link9`;
+
+
+
+
+ALTER TABLE `first_level_category` ADD `is_age_limit` INT(11) NOT NULL DEFAULT '0' COMMENT '0:No, 1: Yes' AFTER `is_featured`;
+
+
+ALTER TABLE `first_level_category` ADD `age_restriction` VARCHAR(255) NULL DEFAULT NULL AFTER `is_age_limit`;
+
+---------------------------25-dec-20--------------------remain on live---------------------
+
+25th Dec 2020
+
+CREATE TABLE `delivery_options` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `title` varchar(225) NOT NULL,
+ `day` int(11) NOT NULL,
+ `coast` varchar(225) NOT NULL,
+ `status` enum('0','1') NOT NULL,
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+ `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+
+ALTER TABLE `delivery_options` CHANGE `coast` `cost` VARCHAR(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+
+ALTER TABLE `delivery_options` CHANGE `status` `status` ENUM('0','1') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '1';
+
+
+
+ALTER TABLE `forum_posts` CHANGE `created_at` `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE `forum_posts` CHANGE `updated_at` `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00';
+
+ALTER TABLE `delivery_options` CHANGE `updated_at` `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00';
+
+ALTER TABLE `delivery_options` CHANGE `created_at` `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+
+
+101 Static Page -----------
+
+
+INSERT INTO `static_pages` (`id`, `page_slug`, `is_active`, `orderby`, `created_at`, `updated_at`, `deleted_at`) VALUES ('26', 'cbd-101', '1', '0', '2020-12-23 01:22:13', '2020-12-23 01:22:20', NULL)
+
+
+---------------------------28-dec-20-----------remain on live----------------
+
+ALTER TABLE `delivery_options` ADD `seller_id` INT(11) NOT NULL AFTER `id`;
+
+
+ALTER TABLE `delivery_options` CHANGE `title` `title` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+
+-------------------------------------------------remain on live-------------------
+
+ALTER TABLE `countries` ADD `phonecode` INT(5) NOT NULL AFTER `is_active`;
+
+
+
+UPDATE `countries` SET `phonecode` = '93' WHERE `countries`.`id` = 1;
+UPDATE `countries` SET `phonecode` = '355' WHERE `countries`.`id` = 2;
+UPDATE `countries` SET `phonecode` = '213' WHERE `countries`.`id` = 3;
+UPDATE `countries` SET `phonecode` = '1684' WHERE `countries`.`id` = 4;
+UPDATE `countries` SET `phonecode` = '376' WHERE `countries`.`id` = 5;
+UPDATE `countries` SET `phonecode` = '244' WHERE `countries`.`id` = 6;
+UPDATE `countries` SET `phonecode` = '1264' WHERE `countries`.`id` = 7;
+UPDATE `countries` SET `phonecode` = '1268' WHERE `countries`.`id` = 9;
+UPDATE `countries` SET `phonecode` = '91' WHERE `countries`.`id` = 101;
+UPDATE `countries` SET `phonecode` = '1' WHERE `countries`.`id` = 231;
+UPDATE `countries` SET `phonecode` = '44' WHERE `countries`.`id` = 230;
+UPDATE `countries` SET `phonecode` = '1' WHERE `countries`.`id` = 232;
+UPDATE `countries` SET `phonecode` = '971' WHERE `countries`.`id` = 229;
+UPDATE `countries` SET `phonecode` = '975' WHERE `countries`.`id` = 25;
+UPDATE `countries` SET `phonecode` = '1441' WHERE `countries`.`id` = 24;
+UPDATE `countries` SET `phonecode` = '229' WHERE `countries`.`id` = 23;
+UPDATE `countries` SET `phonecode` = '501' WHERE `countries`.`id` = 22;
+UPDATE `countries` SET `phonecode` = '32' WHERE `countries`.`id` = 21;
+UPDATE `countries` SET `phonecode` = '375' WHERE `countries`.`id` = 20;
+UPDATE `countries` SET `phonecode` = '1246' WHERE `countries`.`id` = 19;
+UPDATE `countries` SET `phonecode` = '880' WHERE `countries`.`id` = 18;
+UPDATE `countries` SET `phonecode` = '973' WHERE `countries`.`id` = 17;
+UPDATE `countries` SET `phonecode` = '1242' WHERE `countries`.`id` = 16;
+UPDATE `countries` SET `phonecode` = '994' WHERE `countries`.`id` = 15;
+UPDATE `countries` SET `phonecode` = '43' WHERE `countries`.`id` = 14;
+UPDATE `countries` SET `phonecode` = '61' WHERE `countries`.`id` = 13;
+UPDATE `countries` SET `phonecode` = '297' WHERE `countries`.`id` = 12;
+UPDATE `countries` SET `phonecode` = '374' WHERE `countries`.`id` = 11;
+UPDATE `countries` SET `phonecode` = '54' WHERE `countries`.`id` = 10;
+UPDATE `countries` SET `phonecode` = '591' WHERE `countries`.`id` = 26;
+UPDATE `countries` SET `phonecode` = '387' WHERE `countries`.`id` = 27;
+UPDATE `countries` SET `phonecode` = '267' WHERE `countries`.`id` = 28;
+UPDATE `countries` SET `phonecode` = '55' WHERE `countries`.`id` = 30;
+UPDATE `countries` SET `phonecode` = '246' WHERE `countries`.`id` = 31;
+UPDATE `countries` SET `phonecode` = '86' WHERE `countries`.`id` = 44;
+UPDATE `countries` SET `phonecode` = '57' WHERE `countries`.`id` = 47;
+
+
+
+----------------------------29-dec-20-------------remain on live-----------
+
+
+ALTER TABLE `order_details` ADD `delivery_option_id` INT(11) NULL DEFAULT NULL AFTER `seller_discount_amt`, ADD `delivery_cost` DECIMAL(16,4) NULL DEFAULT NULL AFTER `delivery_option_id`, ADD `delivery_title` VARCHAR(255) NULL DEFAULT NULL AFTER `delivery_cost`, ADD `delivery_day` INT(11) NULL DEFAULT NULL AFTER `delivery_title`;
+
+
+---------------------------30-dec-20---------remain on both----------
+
+
+
+UPDATE `countries` SET `phonecode` = '682' WHERE `countries`.`id` = 51;
+UPDATE `countries` SET `phonecode` = '506' WHERE `countries`.`id` = 52;
+UPDATE `countries` SET `phonecode` = '225' WHERE `countries`.`id` = 53;
+UPDATE `countries` SET `phonecode` = '385' WHERE `countries`.`id` = 54;
+UPDATE `countries` SET `phonecode` = '53' WHERE `countries`.`id` = 55;
+UPDATE `countries` SET `phonecode` = '357' WHERE `countries`.`id` = 56;
+UPDATE `countries` SET `phonecode` = '420' WHERE `countries`.`id` = 57;
+UPDATE `countries` SET `phonecode` = '45' WHERE `countries`.`id` = 58;
+UPDATE `countries` SET `phonecode` = '253' WHERE `countries`.`id` = 59;
+UPDATE `countries` SET `phonecode` = '1767' WHERE `countries`.`id` = 60;
+UPDATE `countries` SET `phonecode` = '1809' WHERE `countries`.`id` = 61;
+UPDATE `countries` SET `phonecode` = '593' WHERE `countries`.`id` = 63;
+UPDATE `countries` SET `phonecode` = '20' WHERE `countries`.`id` = 64;
+UPDATE `countries` SET `phonecode` = '503' WHERE `countries`.`id` = 65;
+UPDATE `countries` SET `phonecode` = '240' WHERE `countries`.`id` = 66;
+UPDATE `countries` SET `phonecode` = '291' WHERE `countries`.`id` = 67;
+UPDATE `countries` SET `phonecode` = '372' WHERE `countries`.`id` = 68;
+UPDATE `countries` SET `phonecode` = '251' WHERE `countries`.`id` = 69;
+UPDATE `countries` SET `phonecode` = '298' WHERE `countries`.`id` = 71;
+UPDATE `countries` SET `phonecode` = '500' WHERE `countries`.`id` = 71;
+UPDATE `countries` SET `phonecode` = '298' WHERE `countries`.`id` = 72;
+UPDATE `countries` SET `phonecode` = '679' WHERE `countries`.`id` = 73;
+UPDATE `countries` SET `phonecode` = '358' WHERE `countries`.`id` = 74;
+UPDATE `countries` SET `phonecode` = '33' WHERE `countries`.`id` = 75;
+UPDATE `countries` SET `phonecode` = '594' WHERE `countries`.`id` = 76;
+UPDATE `countries` SET `phonecode` = '689' WHERE `countries`.`id` = 77;
+UPDATE `countries` SET `phonecode` = '241' WHERE `countries`.`id` = 79;
+UPDATE `countries` SET `phonecode` = '220' WHERE `countries`.`id` = 80;
+UPDATE `countries` SET `phonecode` = '995' WHERE `countries`.`id` = 81;
+UPDATE `countries` SET `phonecode` = '49' WHERE `countries`.`id` = 82;
+UPDATE `countries` SET `phonecode` = '233' WHERE `countries`.`id` = 83;
+UPDATE `countries` SET `phonecode` = '350' WHERE `countries`.`id` = 84;
+UPDATE `countries` SET `phonecode` = '30' WHERE `countries`.`id` = 85;
+UPDATE `countries` SET `phonecode` = '299' WHERE `countries`.`id` = 86;
+UPDATE `countries` SET `phonecode` = '1473' WHERE `countries`.`id` = 87;
+UPDATE `countries` SET `phonecode` = '590' WHERE `countries`.`id` = 88;
+UPDATE `countries` SET `phonecode` = '1671' WHERE `countries`.`id` = 89;
+UPDATE `countries` SET `phonecode` = '502' WHERE `countries`.`id` = 90;
+UPDATE `countries` SET `phonecode` = '224' WHERE `countries`.`id` = 92;
+UPDATE `countries` SET `phonecode` = '245' WHERE `countries`.`id` = 93;
+UPDATE `countries` SET `phonecode` = '592' WHERE `countries`.`id` = 94;
+UPDATE `countries` SET `phonecode` = '509' WHERE `countries`.`id` = 95;
+UPDATE `countries` SET `phonecode` = '504' WHERE `countries`.`id` = 97;
+UPDATE `countries` SET `phonecode` = '852' WHERE `countries`.`id` = 98;
+UPDATE `countries` SET `phonecode` = '36' WHERE `countries`.`id` = 99;
+UPDATE `countries` SET `phonecode` = '354' WHERE `countries`.`id` = 100;
+UPDATE `countries` SET `phonecode` = '261' WHERE `countries`.`id` = 130;
+UPDATE `countries` SET `phonecode` = '265' WHERE `countries`.`id` = 131;
+UPDATE `countries` SET `phonecode` = '60' WHERE `countries`.`id` = 132;
+UPDATE `countries` SET `phonecode` = '960' WHERE `countries`.`id` = 133;
+UPDATE `countries` SET `phonecode` = '223' WHERE `countries`.`id` = 134;
+UPDATE `countries` SET `phonecode` = '356' WHERE `countries`.`id` = 135;
+UPDATE `countries` SET `phonecode` = '692' WHERE `countries`.`id` = 137;
+UPDATE `countries` SET `phonecode` = '596' WHERE `countries`.`id` = 138;
+UPDATE `countries` SET `phonecode` = '222' WHERE `countries`.`id` = 139;
+UPDATE `countries` SET `phonecode` = '230' WHERE `countries`.`id` = 140;
+UPDATE `countries` SET `phonecode` = '269' WHERE `countries`.`id` = 141;
+UPDATE `countries` SET `phonecode` = '52' WHERE `countries`.`id` = 142;
+UPDATE `countries` SET `phonecode` = '691' WHERE `countries`.`id` = 143;
+UPDATE `countries` SET `phonecode` = '373' WHERE `countries`.`id` = 144;
+UPDATE `countries` SET `phonecode` = '377' WHERE `countries`.`id` = 145;
+UPDATE `countries` SET `phonecode` = '976' WHERE `countries`.`id` = 146;
+UPDATE `countries` SET `phonecode` = '1664' WHERE `countries`.`id` = 147;
+UPDATE `countries` SET `phonecode` = '212' WHERE `countries`.`id` = 148;
+UPDATE `countries` SET `phonecode` = '258' WHERE `countries`.`id` = 149;
+UPDATE `countries` SET `phonecode` = '95' WHERE `countries`.`id` = 150;
+UPDATE `countries` SET `phonecode` = '264' WHERE `countries`.`id` = 151;
+UPDATE `countries` SET `phonecode` = '674' WHERE `countries`.`id` = 152;
+UPDATE `countries` SET `phonecode` = '977' WHERE `countries`.`id` = 153;
+UPDATE `countries` SET `phonecode` = '31' WHERE `countries`.`id` = 154;
+UPDATE `countries` SET `phonecode` = '599' WHERE `countries`.`id` = 154;
+UPDATE `countries` SET `phonecode` = '31' WHERE `countries`.`id` = 155;
+UPDATE `countries` SET `phonecode` = '687' WHERE `countries`.`id` = 156;
+UPDATE `countries` SET `phonecode` = '64' WHERE `countries`.`id` = 157;
+UPDATE `countries` SET `phonecode` = '505' WHERE `countries`.`id` = 158;
+UPDATE `countries` SET `phonecode` = '227' WHERE `countries`.`id` = 159;
+UPDATE `countries` SET `phonecode` = '234' WHERE `countries`.`id` = 160;
+UPDATE `countries` SET `phonecode` = '683' WHERE `countries`.`id` = 161;
+UPDATE `countries` SET `phonecode` = '672' WHERE `countries`.`id` = 162;
+UPDATE `countries` SET `phonecode` = '1670' WHERE `countries`.`id` = 163;
+UPDATE `countries` SET `phonecode` = '47' WHERE `countries`.`id` = 164;
+UPDATE `countries` SET `phonecode` = '968' WHERE `countries`.`id` = 165;
+UPDATE `countries` SET `phonecode` = '92' WHERE `countries`.`id` = 166;
+UPDATE `countries` SET `phonecode` = '680' WHERE `countries`.`id` = 167;
+UPDATE `countries` SET `phonecode` = '970' WHERE `countries`.`id` = 168;
+UPDATE `countries` SET `phonecode` = '507' WHERE `countries`.`id` = 169;
+UPDATE `countries` SET `phonecode` = '675' WHERE `countries`.`id` = 170;
+UPDATE `countries` SET `phonecode` = '595' WHERE `countries`.`id` = 171;
+UPDATE `countries` SET `phonecode` = '51' WHERE `countries`.`id` = 172;
+UPDATE `countries` SET `phonecode` = '63' WHERE `countries`.`id` = 173;
+UPDATE `countries` SET `phonecode` = '48' WHERE `countries`.`id` = 175;
+UPDATE `countries` SET `phonecode` = '351' WHERE `countries`.`id` = 176;
+UPDATE `countries` SET `phonecode` = '1787' WHERE `countries`.`id` = 177;
+UPDATE `countries` SET `phonecode` = '974' WHERE `countries`.`id` = 178;
+UPDATE `countries` SET `phonecode` = '262' WHERE `countries`.`id` = 179;
+UPDATE `countries` SET `phonecode` = '40' WHERE `countries`.`id` = 180;
+UPDATE `countries` SET `phonecode` = '70' WHERE `countries`.`id` = 181;
+UPDATE `countries` SET `phonecode` = '250' WHERE `countries`.`id` = 182;
+UPDATE `countries` SET `phonecode` = '290' WHERE `countries`.`id` = 183;
+UPDATE `countries` SET `phonecode` = '1869' WHERE `countries`.`id` = 184;
+UPDATE `countries` SET `phonecode` = '1758' WHERE `countries`.`id` = 185;
+UPDATE `countries` SET `phonecode` = '508' WHERE `countries`.`id` = 186;
+UPDATE `countries` SET `phonecode` = '1784' WHERE `countries`.`id` = 187;
+UPDATE `countries` SET `phonecode` = '684' WHERE `countries`.`id` = 188;
+UPDATE `countries` SET `phonecode` = '378' WHERE `countries`.`id` = 189;
+UPDATE `countries` SET `phonecode` = '239' WHERE `countries`.`id` = 190;
+UPDATE `countries` SET `phonecode` = '966' WHERE `countries`.`id` = 191;
+UPDATE `countries` SET `phonecode` = '221' WHERE `countries`.`id` = 192;
+UPDATE `countries` SET `phonecode` = '381' WHERE `countries`.`id` = 193;
+UPDATE `countries` SET `phonecode` = '248' WHERE `countries`.`id` = 194;
+UPDATE `countries` SET `phonecode` = '232' WHERE `countries`.`id` = 195;
+UPDATE `countries` SET `phonecode` = '65' WHERE `countries`.`id` = 196;
+UPDATE `countries` SET `phonecode` = '421' WHERE `countries`.`id` = 197;
+UPDATE `countries` SET `phonecode` = '386' WHERE `countries`.`id` = 198;
+UPDATE `countries` SET `phonecode` = '677' WHERE `countries`.`id` = 200;
+UPDATE `countries` SET `phonecode` = '252' WHERE `countries`.`id` = 201;
+UPDATE `countries` SET `phonecode` = '27' WHERE `countries`.`id` = 202;
+UPDATE `countries` SET `phonecode` = '34' WHERE `countries`.`id` = 205;
+UPDATE `countries` SET `phonecode` = '94' WHERE `countries`.`id` = 206;
+UPDATE `countries` SET `phonecode` = '249' WHERE `countries`.`id` = 207;
+UPDATE `countries` SET `phonecode` = '597' WHERE `countries`.`id` = 208;
+UPDATE `countries` SET `phonecode` = '47' WHERE `countries`.`id` = 209;
+UPDATE `countries` SET `phonecode` = '268' WHERE `countries`.`id` = 210;
+UPDATE `countries` SET `phonecode` = '46' WHERE `countries`.`id` = 211;
+UPDATE `countries` SET `phonecode` = '41' WHERE `countries`.`id` = 212;
+UPDATE `countries` SET `phonecode` = '963' WHERE `countries`.`id` = 213;
+UPDATE `countries` SET `phonecode` = '886' WHERE `countries`.`id` = 214;
+UPDATE `countries` SET `phonecode` = '992' WHERE `countries`.`id` = 215;
+UPDATE `countries` SET `phonecode` = '255' WHERE `countries`.`id` = 216;
+UPDATE `countries` SET `phonecode` = '66' WHERE `countries`.`id` = 217;
+UPDATE `countries` SET `phonecode` = '228' WHERE `countries`.`id` = 218;
+UPDATE `countries` SET `phonecode` = '690' WHERE `countries`.`id` = 219;
+UPDATE `countries` SET `phonecode` = '676' WHERE `countries`.`id` = 220;
+UPDATE `countries` SET `phonecode` = '1868' WHERE `countries`.`id` = 221;
+UPDATE `countries` SET `phonecode` = '216' WHERE `countries`.`id` = 222;
+UPDATE `countries` SET `phonecode` = '90' WHERE `countries`.`id` = 223;
+UPDATE `countries` SET `phonecode` = '7370' WHERE `countries`.`id` = 224;
+UPDATE `countries` SET `phonecode` = '1649' WHERE `countries`.`id` = 225;
+UPDATE `countries` SET `phonecode` = '688' WHERE `countries`.`id` = 226;
+UPDATE `countries` SET `phonecode` = '256' WHERE `countries`.`id` = 227;
+UPDATE `countries` SET `phonecode` = '380' WHERE `countries`.`id` = 228;
+UPDATE `countries` SET `phonecode` = '598' WHERE `countries`.`id` = 233;
+UPDATE `countries` SET `phonecode` = '998' WHERE `countries`.`id` = 234;
+UPDATE `countries` SET `phonecode` = '678' WHERE `countries`.`id` = 235;
+UPDATE `countries` SET `phonecode` = '58' WHERE `countries`.`id` = 237;
+UPDATE `countries` SET `phonecode` = '84' WHERE `countries`.`id` = 238;
+UPDATE `countries` SET `phonecode` = '1284' WHERE `countries`.`id` = 239;
+UPDATE `countries` SET `phonecode` = '1340' WHERE `countries`.`id` = 240;
+UPDATE `countries` SET `phonecode` = '681' WHERE `countries`.`id` = 241;
+UPDATE `countries` SET `phonecode` = '212' WHERE `countries`.`id` = 242;
+UPDATE `countries` SET `phonecode` = '967' WHERE `countries`.`id` = 243;
+UPDATE `countries` SET `phonecode` = '260' WHERE `countries`.`id` = 245;
+UPDATE `countries` SET `phonecode` = '263' WHERE `countries`.`id` = 246;
+
+
+
+
+
+INSERT INTO `static_pages` (`id`, `page_slug`, `is_active`, `orderby`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'cbd-101', '1', '13', NULL, NULL, NULL);
+
+UPDATE `static_pages` SET `created_at` = '2020-12-30 18:19:40' WHERE `static_pages`.`id` = 24;
+
+UPDATE `static_pages` SET `updated_at` = '2020-12-30 18:20:16' WHERE `static_pages`.`id` = 24;
+
+
+INSERT INTO `static_pages_translation` (`id`, `static_page_id`, `page_title`, `page_desc`, `locale`, `meta_keyword`, `meta_desc`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, '24', 'CBD 101', '<p>CBD 101</p>', 'en', 'CBD 101', '<p>CBD 101</p>', NULL, NULL, NULL);
+
+
+UPDATE `static_pages` SET `orderby` = '0' WHERE `static_pages`.`id` = 24;
+
+-----------------------
+
+
+
+--------------------- 1st Jan 2021 -----------remain on live----------
+
+ALTER TABLE `site_settings` ADD `twilio_account_sid` VARCHAR(225) NOT NULL AFTER `deleted_at`, ADD `twilio_auth_token` VARCHAR(225) NOT NULL AFTER `twilio_account_sid`, ADD `twilio_from_number_` VARCHAR(225) NOT NULL AFTER `twilio_auth_token`; 
+
+ALTER TABLE `site_settings` CHANGE `twilio_from_number_` `twilio_from_number` VARCHAR(225) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+
+-----------------------4-jan-21----------remain on both---------------
+
+INSERT INTO `static_pages` (`id`, `page_slug`, `is_active`, `orderby`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'is-cbd-legal', '1', '13', '2021-01-04 14:39:44', '2021-01-04 14:39:44', NULL);
+
+INSERT INTO `static_pages_translation` (`id`, `static_page_id`, `page_title`, `page_desc`, `locale`, `meta_keyword`, `meta_desc`, `created_at`, `updated_at`, `deleted_at`, `menuin_footer`) VALUES (NULL, '27', 'Is Cbd Legal', 'Is Cbd Legal', 'en', 'Is Cbd Legal', 'Is Cbd Legal', '2021-01-04 14:43:40', '2021-01-04 14:43:40', NULL, '0');
+
+
+-----------------------------04-jan-21 Akshay-------------------
+
+CREATE TABLE `shop_by_effect` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `title` varchar(255) NOT NULL,
+ `subtitle` varchar(255) NOT NULL,
+ `link_url` text NOT NULL,
+ `image` text DEFAULT NULL,
+ `is_active` enum('0','1') NOT NULL DEFAULT '0',
+ `created_at` datetime NOT NULL,
+ `updated_at` datetime NOT NULL,
+ `deleted_at` datetime NOT NULL,
+ PRIMARY KEY (`id`),
+ KEY `title` (`title`),
+ KEY `subtitle` (`subtitle`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1
+
+
+
+INSERT INTO `modules` (`id`, `module_slug`, `module_name`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'shop_by_effect', 'Shop By Effect', '1', current_timestamp(), NULL, NULL);
+
+
+-----------------------------11-jan-21 Akshay---------remain on live----------
+
+
+CREATE TABLE `shop_by_spectrum` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `title` varchar(255) NOT NULL,
+ `subtitle` varchar(255) NOT NULL,
+ `link_url` text NOT NULL,
+ `image` text DEFAULT NULL,
+ `is_active` enum('0','1') NOT NULL DEFAULT '0',
+ `created_at` datetime NOT NULL,
+ `updated_at` datetime NOT NULL,
+ `deleted_at` datetime NOT NULL,
+ PRIMARY KEY (`id`),
+ KEY `title` (`title`),
+ KEY `subtitle` (`subtitle`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+
+
+INSERT INTO `modules` (`id`, `module_slug`, `module_name`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'shop_by_spectrum', 'Shop by Spectrum', '1', current_timestamp(), '2021-01-11 12:43:44', '2021-01-11 12:43:44');
+
+
+-----------------------------12-jan-21--akshay--------------done on live--------
+
+ALTER TABLE `site_settings` ADD `google_ads_script` TEXT NULL DEFAULT NULL AFTER `pixelcode2`;
+
+
+Create highlights folder
+
+CREATE TABLE `highlight` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `title` varchar(255) NOT NULL,
+ `description` text NOT NULL,
+ `hilight_image` text NOT NULL,
+ `is_active` enum('0','1') NOT NULL DEFAULT '1',
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+ `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4
+
+
+
+------------------------13-jan-21-----------------done on live------------------
+
+
+UPDATE `modules` SET `module_slug` = 'shop_by_reviews' WHERE `modules`.`id` = 38;
+
+INSERT INTO `modules` (`id`, `module_slug`, `module_name`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'highlights', 'Highlights', '1', '2021-01-11 17:02:57', '2021-01-11 12:43:44', '2021-01-13 12:10:06');
+
+
+UPDATE `modules` SET `module_name` = 'Shop By Reviews' WHERE `modules`.`id` = 38;
+
+
+
+------------------------15-jan-21--------------------------remain on live--------------
+
+ALTER TABLE `brands` ADD `description` TEXT NULL DEFAULT NULL AFTER `name`;
+
+ALTER TABLE `first_level_category` ADD `description` TEXT NULL DEFAULT NULL AFTER `product_type`;
+
+
+CREATE TABLE `first_level_category_faq` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `category_id` int(11) NOT NULL,
+ `question` text NOT NULL,
+ `answer` text NOT NULL,
+ `is_active` int(11) NOT NULL DEFAULT 0,
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+ `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+ `deleted_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4
+------------------------18-jan-21-----------------------------------------
+
+ALTER TABLE `order_details` ADD `card_last_four` VARCHAR(6) NULL DEFAULT NULL AFTER `delivery_day`;
+
+
+-------------------------19-jan-21------------------------------
+
+ALTER TABLE `order_details` ADD `authorize_transaction_status` VARCHAR(30) NULL DEFAULT NULL AFTER `card_last_four`;
+
+ALTER TABLE `site_settings` ADD `sandbox_api_loginid` VARCHAR(100) NULL DEFAULT NULL AFTER `twilio_from_number`, ADD `sandbox_transactionkey` VARCHAR(100) NULL DEFAULT NULL AFTER `sandbox_api_loginid`, ADD `live_api_loginid` VARCHAR(100) NULL DEFAULT NULL AFTER `sandbox_transactionkey`, ADD `live_transactionkey` VARCHAR(100) NULL DEFAULT NULL AFTER `live_api_loginid`;
+
+
+-------------------------20-jan-21 Akshay-------remain on both-----------------------
+
+ALTER TABLE `order_details` ADD `payment_gateway_used` VARCHAR(50) NULL DEFAULT 'square' COMMENT 'Slug for paymeny gatewat used (square, authorizenet)' AFTER `card_last_four`;
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Authorize.net Order Payment Settled (Admin)', 'Order Payment Settled', 'Chow420', 'team@chow420.com', '<p>Hello&nbsp; ##USER_NAME##,<br /><br />The payment for order, Order No. ##ORDER_NO## has been settled successfully. Now <b>##SELLER_NAME##</b> can process the order further.</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<br/>\r\n<div style=\"text-align: center;\"><a style=\"background: #b833cc; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', '##APP_NAME##~##ORDER_NO##~##SELLER_NAME##~##URL##~##USER_NAME##', NULL, '2016-05-18 08:11:57', '2020-01-24 19:06:16');
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br />The payment for order number <b>##ORDER_NO##</b> has been settled successfully. Now <b>##SELLER_NAME##</b> can process the order further.</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<br/>\r\n<div style=\"text-align: center;\"><a style=\"background: #b833cc; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>' WHERE `email_template`.`id` = 143;
+
+UPDATE `email_template` SET `template_name` = 'Authorize.net Order Payment Settled' WHERE `email_template`.`id` = 143;
+
+UPDATE `email_template` SET `template_subject` = 'Payment settled for Order No. ##ORDER_NO##' WHERE `email_template`.`id` = 143;
+
+UPDATE `email_template` SET `template_subject` = 'Payment settled for order number ##ORDER_NO##' WHERE `email_template`.`id` = 143;
+
+INSERT INTO `email_template`(
+    `id`,
+    `template_name`,
+    `template_subject`,
+    `template_from`,
+    `template_from_mail`,
+    `template_html`,
+    `template_variables`,
+    `deleted_at`,
+    `created_at`,
+    `updated_at`
+)
+VALUES(
+    NULL,
+    'Authorize.net Order Payment Settled',
+    'Refund payment settled for order number ##ORDER_NO##',
+    'Chow420',
+    'team@chow420.com',
+    '<p>Hello&nbsp; ##USER_NAME##,<br /><br />The refund payment for order number ##ORDER_NO## has been settled successfully. </p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<br/>\r\n<div style=\"text-align: center;\"><a style=\"background: #b833cc; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>',
+    '##APP_NAME##~##ORDER_NO##~##URL##~##USER_NAME##',
+    NULL,
+    '2016-05-18 08:11:57',
+    '2020-01-24 19:06:16'
+)
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br />The refund payment for order number <b>##ORDER_NO##</b> has been settled successfully. </p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<br/>\r\n<div style=\"text-align: center;\"><a style=\"background: #b833cc; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 144;
+
+--------------------------20-jan-21-----------------remain on live---------------------
+
+ALTER TABLE `site_settings` CHANGE `sandbox_api_loginid` `sandbox_api_loginid` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL COMMENT 'Authorize sandbox apiloginid', CHANGE `sandbox_transactionkey` `sandbox_transactionkey` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL COMMENT 'Authorize sandbox transaction key', CHANGE `live_api_loginid` `live_api_loginid` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL COMMENT 'Authorize live api login id', CHANGE `live_transactionkey` `live_transactionkey` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL COMMENT 'Authorize live transaction key';
+
+
+
+ALTER TABLE `site_settings` ADD `payment_gateway_switch` ENUM('square','authorizenet') NULL DEFAULT NULL AFTER `live_transactionkey`;
+
+------------------------21-jan-21------------remain on both----------------------------
+
+
+INSERT INTO `modules` (`id`, `module_slug`, `module_name`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'announcements', 'Announcements', '1', current_timestamp(), NULL, NULL);
+
+
+------------------------21-jan-21----------remain on live--------------------------
+
+ALTER TABLE `product` ADD `is_trending` INT(11) NOT NULL DEFAULT '0' AFTER `sku`;
+
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Product marked as trending', 'Product marked as trending', 'Chow420', 'team@chow420.com', '<p>Hello&nbsp; ##USER_NAME##,<br /><br />Admin <strong>##ADMIN_NAME##</strong> has made your product : <strong>##PRODUCT_NAME##</strong> as trending.</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #b833cc; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', '##USER_EMAIL##~##USER_NAME##~##SITE_LINK##~##URL##~##SUBJECT##~##PRODUCT_NAME##~##ADMIN_NAME##~##APP_NAME##', NULL, '2016-05-18 08:11:57', '2020-08-04 09:31:58');
+
+
+
+
+--------------------------22-jan-21------------remain on live----------
+
+
+INSERT INTO `spectrum` (`id`, `name`, `is_active`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'No Spectrum', '1', current_timestamp(), '0000-00-00 00:00:00.000000', NULL);
+
+
+
+ALTER TABLE `site_settings` ADD `trendingproduct_status` ENUM('0','1') NOT NULL DEFAULT '1' AFTER `event_date_status`;
+
+
+
+--------------------------22-jan-21----akshay--------remain on live----------
+
+
+CREATE TABLE `announcements` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `title` varchar(255) NOT NULL,
+ `title_color` varchar(20) DEFAULT NULL,
+ `background_color` varchar(20) DEFAULT NULL,
+ `title_url_color` varchar(50) NOT NULL,
+ `background_url` text DEFAULT NULL,
+ `is_active` enum('0','1') NOT NULL DEFAULT '0',
+ `created_at` datetime NOT NULL,
+ `updated_at` datetime NOT NULL,
+ `deleted_at` datetime NOT NULL,
+ PRIMARY KEY (`id`),
+ KEY `title` (`title`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1
+
+
+--------------------------25-jan-21------------remain on live---------
+
+ALTER TABLE `product_news` ADD `is_featured` ENUM('0','1') NOT NULL DEFAULT '0' AFTER `is_active`;
+
+
+--------------------------27-jan-21------remain on live--------------------
+
+UPDATE `spectrum` SET `name` = 'Hemp Seed' WHERE `spectrum`.`id` = 4;
+
+
+------------------------28-jan-21-----remain on both---------------------------------
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Registration mail', 'Account Details for Chow420', 'Chow 420 - Admin', 'team@chow420.com', '<h2>Login to Your Account</h2>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;Hello<strong> ##FIRST_NAME##, </strong></p>\r\n<div style=\"text-align: left;\"><br />Your account is created by&nbsp; ##APP_URL##.</div>\r\n<div style=\"text-align: left;\">&nbsp;</div>\r\n<div style=\"text-align: left;\">You are successfully register with us. and your login details are,&nbsp;</div>\r\n<div style=\"text-align: left;\">&nbsp;</div>\r\n<div style=\"text-align: left;\">Login details</div>\r\n<div style=\"text-align: left;\">&nbsp;</div>\r\n<div style=\"text-align: left;\">Email&nbsp; = ##EMAIL##&nbsp;</div>\r\n<div>&nbsp;</div><div>&nbsp;</div>\r\n<div style=\"text-align: left;\">Login : ##LOGIN_URL##</div>\r\n<div>&nbsp;</div>\r\n<div>Thanks and Regards,<br />&nbsp;##APP_URL##</div>', '##FIRST_NAME##~##EMAIL##~##LOGIN_URL##~##APP_URL##', NULL, NULL, '2020-08-07 06:49:13');
+
+ 
+ 
+--------------------------------30-jan-21----remain on live---------
+ 
+INSERT INTO `spectrum` (`id`, `name`, `is_active`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'Not Applicable', '1', current_timestamp(), '0000-00-00 00:00:00.000000', NULL);
+ 
+ 
+
+---------------------------1-feb-21-------remin on live-------------------
+
+
+INSERT INTO `static_pages` (`id`, `page_slug`, `is_active`, `orderby`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'partner-with-chow', '1', '15', NULL, NULL, NULL);
+
+ 
+INSERT INTO `static_pages_translation` (`id`, `static_page_id`, `page_title`, `page_desc`, `locale`, `meta_keyword`, `meta_desc`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, '26', 'Partner with Chow', 'Partner with Chow', 'en', 'Partner with Chow', 'Partner with Chow', '2021-01-04 14:43:40', '2021-01-04 14:43:40', NULL)
+
+UPDATE `static_pages_translation` SET `page_desc` = 'https://beta.chow420.com/signup_seller' WHERE `static_pages_translation`.`id` = 26;
+
+--------------------------27-jan-21--akshay----remain on live--------------------
+
+INSERT INTO `modules` (`id`, `module_slug`, `module_name`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'users_shares', 'Users Shares', '1', current_timestamp(), NULL, NULL);
+
+CREATE TABLE `users_shares` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `email` varchar(100) NOT NULL,
+ `first_name` varchar(30) NOT NULL,
+ `last_name` varchar(30) NOT NULL,
+ `shares_owned` int(11) NOT NULL,
+ `price_per_share` decimal(10,2) NOT NULL,
+ `percent_change` decimal(10,2) NOT NULL,
+ `share_value` decimal(10,2) NOT NULL,
+ `description` text NOT NULL,
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+ `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+ `is_active` int(11) NOT NULL COMMENT '0- Hide, 1- Show',
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4
+
+
+---------------------3-feb-21--------done on both-------------------
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Dropshipper Order Reminder', 'Dropshipper order ##ORDER_NO## Reminder', 'Chow420', 'team@chow420.com', '<p>Dear ##USER_NAME##,</p>\r\n<p>Order number ##ORDER_NO##&nbsp; is still pending please ship this order.</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<p>&nbsp;</p>\r\n<div style=\"text-align: center;\"><a style=\"background: #b833cc; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br />##APP_NAME## Team&nbsp; &nbsp;</p>\r\n<p>&nbsp;</p>', '##USER_NAME##~##ORDER_NO##~##APP_NAME##', NULL, NULL, '2020-08-10 01:32:38');
+
+
+UPDATE `email_template` SET `template_html` = '<p>Dear ##USER_NAME##,</p>\r\n<p>Order number ##ORDER_NO##&nbsp; is still pending please ship this order.</p>\r\n\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br />##APP_NAME## Team&nbsp; &nbsp;</p>\r\n<p>&nbsp;</p>', `deleted_at` = NULL, `created_at` = NULL WHERE `email_template`.`id` = 147;
+
+
+-------------------------4-feb-21--remain on both--------------------------------------------
+
+
+
+
+
+
+
+date 4/2/2021  (priyanka)
+
+ALTER TABLE `faq` ADD `faq_category` INT NULL DEFAULT NULL AFTER `answer`, ADD INDEX (`faq_category`);
+
+
+CREATE TABLE `faq_category` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `faq_category` varchar(255) DEFAULT NULL,
+ `is_active` tinyint(4) DEFAULT NULL,
+ `created_at` timestamp NULL DEFAULT current_timestamp(),
+ `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8
+
+
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'OTP Verification', '##SUBJECT##', 'Chow420', 'team@chow420.com', '<p>Hello <strong>##FIRST_NAME##</strong> ,</p>\r\n<p>OTP has sent on your email or phone number </p>\r\n<p>&nbsp;</p>\r\n<p>OTP :##OTP##</p>\r\n\r\n<p style=\"text-align: left;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>\r\n<p style=\"text-align: left;\">&nbsp;</p>\r\n<p style=\"text-align: left;\">&nbsp;</p>\r\n<p style=\"text-align: left;\"><br /><br />Thanks, &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <br />The&nbsp; ##SITE_URL##&nbsp; Team&nbsp;&nbsp;</p>\r\n<p style=\"text-align: left;\">&nbsp;</p>\r\n<p style=\"text-align: left;\">&nbsp;</p>', '##FIRST_NAME##~##OTP##~##SITE_URL##', NULL, '2016-05-18 02:41:57', '2020-01-24 13:36:16');
+
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello <strong>##FIRST_NAME##</strong> ,</p>\r\n<p>OTP has sent on your email or phone number </p>\r\n<p>&nbsp;</p>\r\n<p>OTP :##OTP##</p>\r\n\r\n<p style=\"text-align: left;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>\r\n<p style=\"text-align: left;\">&nbsp;</p>\r\n<p style=\"text-align: left;\">&nbsp;</p>\r\n<p style=\"text-align: left;\"><br /><br />Thanks, &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <br />The&nbsp; ##APP_NAME##&nbsp; Team&nbsp;&nbsp;</p>\r\n<p style=\"text-align: left;\">&nbsp;</p>\r\n<p style=\"text-align: left;\">&nbsp;</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 148;
+
+
+-----------------------6-feb-21---remain on both--------------------------------------------
+
+CREATE TABLE `buyer_refered` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `user_id` int(11) NOT NULL,
+ `code` varchar(100) NOT NULL,
+ `email` varchar(255) NOT NULL,
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+ `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`),
+ KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+
+
+CREATE TABLE `buyer_registered_refered` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `user_id` int(11) NOT NULL COMMENT '//user id  of users table',
+ `user_refered_id` int(11) NOT NULL COMMENT '// refered user buyer',
+ `code` varchar(100) NOT NULL COMMENT '//referal code',
+ `email` varchar(255) NOT NULL COMMENT '//refered email',
+ `referal_id` int(11) NOT NULL COMMENT '//who refered',
+ `amount` double NOT NULL COMMENT '//amount',
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+ `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+
+ALTER TABLE `users` ADD `is_refered_buyer` TINYINT(4) NOT NULL DEFAULT '0' AFTER `is_password_changed`;
+
+
+ALTER TABLE `buyer_registered_refered` CHANGE `referal_id` `referal_id` INT(11) NOT NULL COMMENT '//buyer refered user table id';
+
+
+ALTER TABLE `buyer_registered_refered` CHANGE `user_id` `user_id` INT(11) NOT NULL COMMENT '// referal (id of user table)';
+
+
+ALTER TABLE `buyer_registered_refered` CHANGE `user_refered_id` `user_refered_id` INT(11) NOT NULL COMMENT '// buyer_refered id primary key';
+
+
+ALTER TABLE `states` ADD `text` TEXT NULL DEFAULT NULL AFTER `is_buyer_restricted`;
+
+
+CREATE TABLE `buyer_view_product` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `buyer_id` int(11) NOT NULL,
+ `product_id` int(11) NOT NULL,
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+ `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
+
+ALTER TABLE `buyer_view_product` ADD `ip_address` TEXT NULL DEFAULT NULL AFTER `buyer_id`;
+
+
+ALTER TABLE `buyer_view_product` ADD `user_session_id` VARCHAR(255) NULL DEFAULT NULL AFTER `deleted_at`;
+
+ALTER TABLE `buyer_registered_refered` CHANGE `amount` `amount` DOUBLE NULL DEFAULT NULL COMMENT '//amount';
+
+
+ALTER TABLE `buyer_registered_refered` ADD `order_id` INT(11) NOT NULL AFTER `amount`, ADD `order_no` VARCHAR(50) NULL DEFAULT NULL AFTER `order_id`, ADD `is_shipped` TINYINT(4) NOT NULL DEFAULT '0' AFTER `order_no`;
+
+
+CREATE TABLE `buyer_wallet` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `user_id` int(11) NOT NULL,
+ `type` enum('Referal','Review','Moneybackguarantee') NOT NULL,
+ `amount` decimal(16,4) NOT NULL,
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+ `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+
+ALTER TABLE `users` ADD `is_refered_buyer_order_placed` TINYINT(4) NOT NULL DEFAULT '0' AFTER `is_refered_buyer`;
+
+
+ALTER TABLE `buyer_wallet` ADD `typeid` INT(11) NOT NULL AFTER `type`;
+
+
+
+
+
+
+
+----------------------8-feb-2021------------------------------
+
+ALTER TABLE `buyer_wallet` CHANGE `typeid` `typeid` INT(11) NOT NULL COMMENT '// buyer_registered_referedpk';
+
+
+
+CREATE TABLE `money_back_requested_products` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `buyer_id` int(11) DEFAULT NULL,
+ `product_id` int(11) DEFAULT NULL,
+ `status` tinyint(4) DEFAULT NULL,
+ `note` text NOT NULL,
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+ `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
+
+ALTER TABLE `money_back_requested_products` CHANGE `status` `status` TINYINT(4) NULL DEFAULT NULL COMMENT '0=>requested ,1 => approve ,2=> reject';
+
+
+ALTER TABLE `money_back_requested_products` CHANGE `note` `note` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
+
+ALTER TABLE `buyer_wallet` CHANGE `amount` `amount` VARCHAR(100) NOT NULL;
+
+
+
+ALTER TABLE `buyer_wallet` CHANGE `type` `type` ENUM('Referal','Review','Moneybackguarantee','OrderPlaced') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+
+
+
+ALTER TABLE `order_details` ADD `buyer_wallet_id` INT(11) NOT NULL AFTER `authorize_transaction_status`;
+
+
+ALTER TABLE `buyer_wallet` CHANGE `typeid` `typeid` VARCHAR(50) NULL DEFAULT NULL COMMENT '// buyer_registered_referedpk';
+
+----------------------9-feb-21-----------remain on live-----------------
+
+ALTER TABLE `site_settings` ADD `buyer_referal_amount` DOUBLE NULL DEFAULT NULL AFTER `payment_gateway_switch`, ADD `buyer_review_amount` DOUBLE NULL DEFAULT NULL AFTER `buyer_referal_amount`;
+
+ALTER TABLE `site_settings` ADD `buyer_refered_amount` DOUBLE NULL DEFAULT NULL AFTER `buyer_referal_amount`;
+
+
+ALTER TABLE `buyer_wallet` CHANGE `type` `type` ENUM('Referal','Review','Moneybackguarantee','OrderPlaced','Refered') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Product Ratings & Reviews Wallet Amount Credited', 'Product Ratings & Reviews Wallet Amount Credited', 'Chow420', 'team@chow420.com', '<p>Hello&nbsp; ##USER_NAME##,<br /><br />You have added the review ##REVIEW## with rating ##RATING## stars for the product ##PRODUCT_NAME## . you get an credit of ##REVIEW_WALLET_AMOUNT## into your wallet.</p>\r\n<p>&nbsp;</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #b833cc; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', '##USER_NAME##~##MESSAGE##~##URL##~##SUBJECT##~##REVIEW##~##RATING##~##PRODUCT_NAME##~##APP_NAME##~##REVIEW_WALLET_AMOUNT##', NULL, '2016-05-18 08:11:57', '2020-08-04 05:56:02');
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Product Ratings & Reviews Wallet Amount Credited To Users Account', 'Product Ratings & Reviews Wallet Amount Credited', 'Chow420', 'team@chow420.com', '<p>Hello&nbsp; ##USER_NAME##,<br /><br />##BUYER_NAME## has added the review ##REVIEW## with rating ##RATING## stars for the product ##PRODUCT_NAME## . he get an credit of ##REVIEW_WALLET_AMOUNT## into his wallet.</p>\r\n<p>&nbsp;</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #b833cc; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', '##USER_NAME##~##MESSAGE##~##URL##~##SUBJECT##~##REVIEW##~##RATING##~##PRODUCT_NAME##~##APP_NAME##~##REVIEW_WALLET_AMOUNT##~##BUYER_NAME##', NULL, '2016-05-18 08:11:57', '2020-08-04 05:56:02');
+
+
+ALTER TABLE `transaction_details` ADD `buyer_wallet_amount` DECIMAL(10,2) NOT NULL AFTER `shipping_charges`;
+
+
+ALTER TABLE `transaction_details` CHANGE `buyer_wallet_amount` `buyer_wallet_amount` DECIMAL(10,2) NULL DEFAULT NULL;
+
+--------------------11-feb-21---Abhijit--keywords----------------------
+CREATE TABLE keywords (
+id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+keyword_name VARCHAR(255) NOT NULL,
+created_at TIMESTAMP NULL,
+updated_at TIMESTAMP NULL,
+deleted_at TIMESTAMP NULL
+)
+
+ALTER TABLE `keywords` ADD `is_active` ENUM('0','1') NOT NULL DEFAULT '0' AFTER `keyword_name`;
+
+---------------------12-feb-21--------remain on live-------------------
+
+ALTER TABLE `keywords` CHANGE `created_at` `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE `keywords` CHANGE `updated_at` `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL DEFAULT NULL;
+
+
+---------------------12-feb-21----Abhijit--search_suggestion--------------
+
+
+CREATE TABLE search_suggestion (
+id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+title VARCHAR(255) NOT NULL,
+created_at TIMESTAMP NULL,
+updated_at TIMESTAMP NULL,
+deleted_at TIMESTAMP NULL
+)
+
+ALTER TABLE `search_suggestion` ADD `is_active` ENUM('0','1') NOT NULL DEFAULT '0' AFTER `title`;
+
+ALTER TABLE `search_suggestion` CHANGE `created_at` `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE `search_suggestion` CHANGE `updated_at` `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL DEFAULT NULL;
+
+
+
+CREATE TABLE search_suggestion_title (
+id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+title VARCHAR(255) NOT NULL,
+search_suggestion_title VARCHAR(255) NOT NULL,
+created_at TIMESTAMP NULL,
+updated_at TIMESTAMP NULL,
+deleted_at TIMESTAMP NULL
+)
+
+ALTER TABLE `search_suggestion_title` ADD `is_active` ENUM('0','1') NOT NULL DEFAULT '0' AFTER `search_suggestion_title`;
+
+ALTER TABLE `search_suggestion_title` CHANGE `created_at` `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE `search_suggestion_title` CHANGE `updated_at` `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL DEFAULT NULL;
+
+
+--------------------------15-feb-21-----------not used----------------------
+
+ALTER TABLE `search_suggestion` CHANGE `updated_at` `updated_at` TIMESTAMP NOT NULL;
+
+ALTER TABLE `search_suggestion_title` CHANGE `updated_at` `updated_at` TIMESTAMP NOT NULL;
+
+
+ALTER TABLE `search_suggestion_title` CHANGE `search_suggestion_title` `search_suggestion_title` INT(11) NOT NULL;
+
+ALTER TABLE `search_suggestion_title` CHANGE `updated_at` `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00';
+
+ALTER TABLE `search_suggestion_title` CHANGE `search_suggestion_title` `search_suggestion_id` INT(11) NOT NULL;
+
+
+
+CREATE TABLE `search_suggestion` (
+ `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+ `title` varchar(255) NOT NULL,
+ `is_active` enum('0','1') NOT NULL DEFAULT '0',
+ `created_at` timestamp NULL DEFAULT current_timestamp(),
+ `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4
+
+
+
+
+CREATE TABLE `search_suggestion_title` (
+ `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+ `title` varchar(255) NOT NULL,
+ `search_suggestion_id` int(11) NOT NULL,
+ `is_active` enum('0','1') NOT NULL DEFAULT '0',
+ `created_at` timestamp NULL DEFAULT current_timestamp(),
+ `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4
+
+
+-------------------------16-feb-21-----remain on live-------------------------------
+
+UPDATE `email_template` SET `template_subject` = 'OTP Verification' WHERE `email_template`.`id` = 148;
+
+
+
+
+
+
+
+
+
+-----------------------------------17-feb-2021----------------------------------------------------------
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Money back guarantee request to admin', 'Money back guarantee request to admin', 'Chow420', 'team@chow420.com', '<p>Hello&nbsp; Admin,<br /><br />Buyer ##BUYER_NAME## has sent money back guarantee request for this product ##PRODUCT_NAME##.</p>\r\n<p>&nbsp;</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view product list.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #b833cc; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', '##PRODUCT_NAME##~##APP_NAME##~##BUYER_NAME##~##URL##', NULL, '2016-05-18 13:41:57', '2020-08-04 11:26:02');
+
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Money back guarantee request confirmation to user', 'Money back guarantee request confirmation', 'Chow420', 'team@chow420.com', '<p>Hello&nbsp; ##USER_NAME##,<br /><br />Admin has ##STATUS## your money back guarantee request for this product ##PRODUCT_NAME##.</p>\r\n<p>&nbsp;</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view product list.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #b833cc; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', '##PRODUCT_NAME##~##APP_NAME##~##USER_NAME##~##URL##~##STATUS##', NULL, '2016-05-18 13:41:57', '2020-08-04 11:26:02');
+
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br />Admin has ##STATUS## your money back guarantee request for this product ##PRODUCT_NAME##.<br />\r\n<b>Note</b> : ##NOTE##\r\n</p>\r\n<p>&nbsp;</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view product list.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #b833cc; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `template_variables` = '##PRODUCT_NAME##~##APP_NAME##~##USER_NAME##~##URL##~##STATUS##~##NOTE##', `deleted_at` = NULL WHERE `email_template`.`id` = 152;
+
+---------------------10-feb-21------------------------------------------
+
+
+SELECT * FROM `states` WHERE `country_id` = 231
+
+UPDATE `states` SET `shortname` = 'AL' WHERE `states`.`id` = 3919;
+UPDATE `states` SET `shortname` = 'AK' WHERE `states`.`id` = 3920;
+UPDATE `states` SET `shortname` = 'AZ' WHERE `states`.`id` = 3921;
+UPDATE `states` SET `shortname` = 'AR' WHERE `states`.`id` = 3922;
+UPDATE `states` SET `shortname` = 'CA' WHERE `states`.`id` = 3924;
+UPDATE `states` SET `shortname` = 'CO' WHERE `states`.`id` = 3926;
+UPDATE `states` SET `shortname` = 'CT' WHERE `states`.`id` = 3927;
+UPDATE `states` SET `shortname` = 'DE' WHERE `states`.`id` = 3928;
+UPDATE `states` SET `shortname` = 'FL' WHERE `states`.`id` = 3930;
+UPDATE `states` SET `shortname` = 'GA' WHERE `states`.`id` = 3931;
+UPDATE `states` SET `shortname` = 'HI' WHERE `states`.`id` = 3932;
+UPDATE `states` SET `shortname` = 'ID' WHERE `states`.`id` = 3933;
+UPDATE `states` SET `shortname` = 'IL' WHERE `states`.`id` = 3934;
+UPDATE `states` SET `shortname` = 'IN' WHERE `states`.`id` = 3935;
+UPDATE `states` SET `shortname` = 'IA' WHERE `states`.`id` = 3936;
+UPDATE `states` SET `shortname` = 'KS' WHERE `states`.`id` = 3937;
+UPDATE `states` SET `shortname` = 'KY' WHERE `states`.`id` = 3938;
+UPDATE `states` SET `shortname` = 'LA' WHERE `states`.`id` = 3939;
+UPDATE `states` SET `shortname` = 'ME' WHERE `states`.`id` = 3941;
+UPDATE `states` SET `shortname` = 'MD' WHERE `states`.`id` = 3942;
+UPDATE `states` SET `shortname` = 'MA' WHERE `states`.`id` = 3943;
+UPDATE `states` SET `shortname` = 'MI' WHERE `states`.`id` = 3945;
+UPDATE `states` SET `shortname` = 'MN' WHERE `states`.`id` = 3946;
+UPDATE `states` SET `shortname` = 'MS' WHERE `states`.`id` = 3947;
+UPDATE `states` SET `shortname` = 'MO' WHERE `states`.`id` = 3948;
+UPDATE `states` SET `shortname` = 'MT' WHERE `states`.`id` = 3949;
+UPDATE `states` SET `shortname` = 'NE' WHERE `states`.`id` = 3950;
+UPDATE `states` SET `shortname` = 'NV' WHERE `states`.`id` = 3951;
+UPDATE `states` SET `shortname` = 'NH' WHERE `states`.`id` = 3952;
+UPDATE `states` SET `shortname` = 'NJ' WHERE `states`.`id` = 3953;
+UPDATE `states` SET `shortname` = 'NM' WHERE `states`.`id` = 3955;
+UPDATE `states` SET `shortname` = 'NY' WHERE `states`.`id` = 3956;
+UPDATE `states` SET `shortname` = 'NC' WHERE `states`.`id` = 3957;
+UPDATE `states` SET `shortname` = 'ND' WHERE `states`.`id` = 3958;
+UPDATE `states` SET `shortname` = 'OH' WHERE `states`.`id` = 3959;
+UPDATE `states` SET `shortname` = 'OK' WHERE `states`.`id` = 3960;
+UPDATE `states` SET `shortname` = 'OR' WHERE `states`.`id` = 3962;
+UPDATE `states` SET `shortname` = 'PA' WHERE `states`.`id` = 3963;
+UPDATE `states` SET `shortname` = 'RI' WHERE `states`.`id` = 3965;
+UPDATE `states` SET `shortname` = 'SC' WHERE `states`.`id` = 3966;
+UPDATE `states` SET `shortname` = 'SD' WHERE `states`.`id` = 3967;
+UPDATE `states` SET `shortname` = 'TN' WHERE `states`.`id` = 3969;
+UPDATE `states` SET `shortname` = 'TX' WHERE `states`.`id` = 3970;
+UPDATE `states` SET `shortname` = 'UT' WHERE `states`.`id` = 3972;
+UPDATE `states` SET `shortname` = 'VT' WHERE `states`.`id` = 3973;
+UPDATE `states` SET `shortname` = 'VA' WHERE `states`.`id` = 3974;
+UPDATE `states` SET `shortname` = 'WA' WHERE `states`.`id` = 3975;
+UPDATE `states` SET `shortname` = 'WV' WHERE `states`.`id` = 3976;
+UPDATE `states` SET `shortname` = 'WI' WHERE `states`.`id` = 3977;
+UPDATE `states` SET `shortname` = 'WY' WHERE `states`.`id` = 3978;
+
+
+UPDATE `states` SET `shortname` = 'AB' WHERE `states`.`id` = 663;
+UPDATE `states` SET `shortname` = 'BC' WHERE `states`.`id` = 664;
+UPDATE `states` SET `shortname` = 'MB' WHERE `states`.`id` = 665;
+UPDATE `states` SET `shortname` = 'NB' WHERE `states`.`id` = 666;
+UPDATE `states` SET `shortname` = 'NT' WHERE `states`.`id` = 668;
+UPDATE `states` SET `shortname` = 'NS' WHERE `states`.`id` = 669;
+UPDATE `states` SET `shortname` = 'NU' WHERE `states`.`id` = 670;
+UPDATE `states` SET `shortname` = 'ON' WHERE `states`.`id` = 433;
+UPDATE `states` SET `shortname` = 'ON' WHERE `states`.`id` = 3961;
+UPDATE `states` SET `shortname` = 'ON' WHERE `states`.`id` = 671;
+UPDATE `states` SET `shortname` = 'PE' WHERE `states`.`id` = 672;
+UPDATE `states` SET `shortname` = 'QC' WHERE `states`.`id` = 673;
+UPDATE `states` SET `shortname` = 'SK' WHERE `states`.`id` = 674;
+UPDATE `states` SET `shortname` = 'DC' WHERE `states`.`id` = 3929;
+
+
+
+//India
+
+UPDATE `states` SET `shortname` = 'AN' WHERE `states`.`id` = 1;
+UPDATE `states` SET `shortname` = 'AP' WHERE `states`.`id` = 2;
+UPDATE `states` SET `shortname` = 'AR' WHERE `states`.`id` = 3;
+UPDATE `states` SET `shortname` = 'AS' WHERE `states`.`id` = 4;
+UPDATE `states` SET `shortname` = 'BR' WHERE `states`.`id` = 5;
+UPDATE `states` SET `shortname` = 'CH' WHERE `states`.`id` = 6;
+UPDATE `states` SET `shortname` = 'CT' WHERE `states`.`id` = 7;
+UPDATE `states` SET `shortname` = 'DN' WHERE `states`.`id` = 8;
+UPDATE `states` SET `shortname` = 'DD' WHERE `states`.`id` = 9;
+UPDATE `states` SET `shortname` = 'DL' WHERE `states`.`id` = 10;
+UPDATE `states` SET `shortname` = 'GA' WHERE `states`.`id` = 11;
+UPDATE `states` SET `shortname` = 'GJ' WHERE `states`.`id` = 12;
+UPDATE `states` SET `shortname` = 'HR' WHERE `states`.`id` = 13;
+UPDATE `states` SET `shortname` = 'HP' WHERE `states`.`id` = 14;
+UPDATE `states` SET `shortname` = 'JK' WHERE `states`.`id` = 15;
+UPDATE `states` SET `shortname` = 'JH' WHERE `states`.`id` = 16;
+UPDATE `states` SET `shortname` = 'KA' WHERE `states`.`id` = 17;
+UPDATE `states` SET `shortname` = 'KL' WHERE `states`.`id` = 19;
+UPDATE `states` SET `shortname` = 'LD' WHERE `states`.`id` = 20;
+UPDATE `states` SET `shortname` = 'MP' WHERE `states`.`id` = 21;
+UPDATE `states` SET `shortname` = 'MH' WHERE `states`.`id` = 22;
+UPDATE `states` SET `shortname` = 'MN' WHERE `states`.`id` = 23;
+UPDATE `states` SET `shortname` = 'ML' WHERE `states`.`id` = 24;
+UPDATE `states` SET `shortname` = 'MZ' WHERE `states`.`id` = 25;
+UPDATE `states` SET `shortname` = 'NL' WHERE `states`.`id` = 26;
+UPDATE `states` SET `shortname` = 'OR' WHERE `states`.`id` = 29;
+UPDATE `states` SET `shortname` = 'PY' WHERE `states`.`id` = 31;
+UPDATE `states` SET `shortname` = 'PB' WHERE `states`.`id` = 32;
+UPDATE `states` SET `shortname` = 'RJ' WHERE `states`.`id` = 33;
+UPDATE `states` SET `shortname` = 'SK' WHERE `states`.`id` = 34;
+UPDATE `states` SET `shortname` = 'TN' WHERE `states`.`id` = 35;
+UPDATE `states` SET `shortname` = 'TG' WHERE `states`.`id` = 36;
+UPDATE `states` SET `shortname` = 'TR' WHERE `states`.`id` = 37;
+UPDATE `states` SET `shortname` = 'UP' WHERE `states`.`id` = 38;
+UPDATE `states` SET `shortname` = 'UT' WHERE `states`.`id` = 39;
+UPDATE `states` SET `shortname` = 'WB' WHERE `states`.`id` = 41;
+
+
+----------------------11-feb-21--------------remain on live---------------------
+
+ALTER TABLE `order_details` ADD `tax` DECIMAL(16,3) NOT NULL AFTER `buyer_wallet_id`;
+
+ALTER TABLE `order_details` CHANGE `tax` `tax` DECIMAL(16,2) NOT NULL;
+
+
+
+
+
+-----------------------------------18-feb-2021--------------------------------------------------------------
+
+ALTER TABLE `site_settings`  ADD `tax_api_key` VARCHAR(225) NULL DEFAULT NULL  AFTER `buyer_review_amount`,  ADD `tax_url` VARCHAR(225) NULL DEFAULT NULL  AFTER `tax_api_key`;
+
+
+new qry
+
+ALTER TABLE `site_settings` CHANGE `tax_api_key` `live_tax_api_key` VARCHAR(225) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+
+ALTER TABLE `site_settings` CHANGE `tax_url` `live_tax_url` VARCHAR(225) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+
+
+ALTER TABLE `site_settings` ADD `sandbox_tax_api_key` VARCHAR(225) NULL DEFAULT NULL AFTER `live_tax_url`, ADD `sandbox_tax_url` VARCHAR(225) NULL DEFAULT NULL AFTER `sandbox_tax_api_key`;
+
+
+-------------------------19-feb-21----------------------------
+
+ALTER TABLE `search_suggestion_title` ADD `user_search` INT NOT NULL DEFAULT '0' AFTER `is_active`;
+
+
+
+------------------------22-feb-21-----remain on live----------------
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Referal Wallet Amount Credited To Users Account', 'Referal Wallet Amount Credited To Users Account', 'Chow420', 'team@chow420.com', '<p>Hello&nbsp; ##USER_NAME##,<br /><br />##SELLER_NAME## has shipped the order ##ORDER_NO##. referal wallet amount ##REVIEW_WALLET_AMOUNT## credited to your wallet.</p>\r\n<p>&nbsp;</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #b833cc; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', '##USER_NAME##~##MESSAGE##~##URL##~##SUBJECT##~##SELLER_NAME##~##ORDER_NO##~##APP_NAME##~##REVIEW_WALLET_AMOUNT##', NULL, '2016-05-18 08:11:57', '2020-08-04 05:56:02');
+
+
+ALTER TABLE `buyer_wallet` ADD `status` TINYINT(4) NOT NULL DEFAULT '0' COMMENT '//0:pending 1: In wallet,2:withdrawn ' AFTER `amount`;
+
+
+--------------------23-feb-21----remain on live------------------------
+
+ALTER TABLE `buyer_wallet` CHANGE `type` `type` ENUM('Referal','Review','Moneybackguarantee','OrderPlaced','Refered','Reported_Issue') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+
+
+ALTER TABLE `buyer_wallet` CHANGE `type` `type` ENUM('Referal','Review','OrderPlaced','Refered','Reported_Issue') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+
+
+ALTER TABLE `money_back_requested_products` ADD `reported_issue_note` TEXT NULL DEFAULT NULL AFTER `note`;
+
+UPDATE `email_template` SET `template_variables` = '##PRODUCT_NAME##~##APP_NAME##~##BUYER_NAME##~##URL##~##Reported_Note##' WHERE `email_template`.`id` = 151;
+
+
+
+
+
+
+----------------------------------------24 -feb-2021 -----------------------------------------
+
+UPDATE `email_template` SET `template_name` = 'Reported issue request confirmation to user', `template_subject` = 'Reported issue request confirmation', `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br />Admin has ##STATUS## your reported issue request for this product ##PRODUCT_NAME##.<br />\r\n<b>Note</b> : ##NOTE##\r\n</p>\r\n<p>&nbsp;</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view product list.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #B833CC; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 152;
+
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; Admin,<br /><br />Buyer ##BUYER_NAME## has reported issue for this product ##PRODUCT_NAME##</p>\r\n<p>Note: ##Reported_Note##</p>\r\n<p><strong>&nbsp; &nbsp; &nbsp; &nbsp;Please click on below button to view product list</strong> &nbsp;</p>\r\n<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>\r\n<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a style=\"background: #B833CC; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View</a></p>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>' WHERE `email_template`.`id` = 151;
+
+
+
+UPDATE `email_template` SET `template_name` = 'Issue reported to admin' WHERE `email_template`.`id` = 151;
+
+UPDATE `email_template` SET `template_subject` = 'Issue reported to admin' WHERE `email_template`.`id` = 151;
+
+
+
+--------------------25-feb-21----------remain on both---------------------------
+
+
+
+
+date 25/2/2021
+
+ALTER TABLE `search_suggestion_title` ADD `front_suggession_title` TEXT NULL DEFAULT NULL AFTER `user_search`, ADD `suggession_link` TEXT NULL DEFAULT NULL AFTER `front_suggession_title`;
+
+ALTER TABLE `search_suggestion_title` CHANGE `title` `title` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+ALTER TABLE `search_suggestion_title` CHANGE `search_suggestion_id` `search_suggestion_id` INT(11) NULL DEFAULT NULL;
+
+ALTER TABLE `search_suggestion` ADD `user_search` TINYINT NULL DEFAULT NULL AFTER `is_active`;
+
+
+
+ALTER TABLE `search_suggestion` CHANGE `user_search` `user_search` TINYINT(4) NULL DEFAULT '0';
+
+
+
+
+-----------------------26-feb-21---------remain on live------------------------
+
+
+date 26/2/2021
+
+
+
+1) CREATE TABLE `search_suggestion_title` (
+ `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+ `title` varchar(255) DEFAULT NULL,
+ `search_suggestion_id` int(11) DEFAULT NULL,
+ `is_active` enum('0','1') NOT NULL DEFAULT '0',
+ `front_suggession_title` text DEFAULT NULL,
+ `suggession_link` text DEFAULT NULL,
+ `created_at` timestamp NULL DEFAULT current_timestamp(),
+ `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+
+
+2) ALTER TABLE `search_suggestion_title` ADD `if_user_search_contains` TEXT NULL DEFAULT NULL AFTER `suggession_link`;
+
+
+
+
+
+----------------------------1-march-21-------remain on live----------------------------------
+
+
+
+UPDATE `states` SET `shortname` = 'BRE' WHERE `states`.`id` = 1202;
+UPDATE `states` SET `shortname` = 'PDL' WHERE `states`.`id` = 1280;
+UPDATE `states` SET `shortname` = 'AJ' WHERE `states`.`id` = 1977;
+UPDATE `states` SET `shortname` = 'IR' WHERE `states`.`id` = 1979;
+UPDATE `states` SET `shortname` = 'JA' WHERE `states`.`id` = 1980;
+UPDATE `states` SET `shortname` = 'MN' WHERE `states`.`id` = 1981;
+UPDATE `states` SET `shortname` = 'MD' WHERE `states`.`id` = 1982;
+UPDATE `states` SET `shortname` = 'MA' WHERE `states`.`id` = 1986;
+UPDATE `states` SET `shortname` = 'AT' WHERE `states`.`id` = 1987;
+UPDATE `states` SET `shortname` = 'AZ' WHERE `states`.`id` = 1988;
+UPDATE `states` SET `shortname` = 'KA' WHERE `states`.`id` = 1985;
+UPDATE `states` SET `shortname` = 'BA' WHERE `states`.`id` = 1984;
+UPDATE `states` SET `shortname` = 'AQ' WHERE `states`.`id` = 1983;
+
+UPDATE `states` SET `shortname` = 'AG' WHERE `states`.`id` = 2427;
+UPDATE `states` SET `shortname` = 'BN' WHERE `states`.`id` = 2428;
+UPDATE `states` SET `shortname` = 'BS' WHERE `states`.`id` = 2429;
+UPDATE `states` SET `shortname` = 'CP' WHERE `states`.`id` = 2430;
+UPDATE `states` SET `shortname` = 'CS' WHERE `states`.`id` = 2431;
+UPDATE `states` SET `shortname` = 'CI' WHERE `states`.`id` = 2432;
+UPDATE `states` SET `shortname` = 'CH' WHERE `states`.`id` = 2433;
+UPDATE `states` SET `shortname` = 'CL' WHERE `states`.`id` = 2434;
+UPDATE `states` SET `shortname` = 'DF' WHERE `states`.`id` = 2435;
+UPDATE `states` SET `shortname` = 'DG' WHERE `states`.`id` = 2436;
+UPDATE `states` SET `shortname` = 'GJ' WHERE `states`.`id` = 2438;
+UPDATE `states` SET `shortname` = 'GE' WHERE `states`.`id` = 2439;
+UPDATE `states` SET `shortname` = 'HD' WHERE `states`.`id` = 2440;
+UPDATE `states` SET `shortname` = 'JA' WHERE `states`.`id` = 2441;
+UPDATE `states` SET `shortname` = 'MX' WHERE `states`.`id` = 2442;
+UPDATE `states` SET `shortname` = 'MC' WHERE `states`.`id` = 2443;
+UPDATE `states` SET `shortname` = 'NA' WHERE `states`.`id` = 2445;
+UPDATE `states` SET `shortname` = 'NL' WHERE `states`.`id` = 2446;
+UPDATE `states` SET `shortname` = 'OA' WHERE `states`.`id` = 2447;
+UPDATE `states` SET `shortname` = 'PU' WHERE `states`.`id` = 2448;
+UPDATE `states` SET `shortname` = 'QE' WHERE `states`.`id` = 2449;
+UPDATE `states` SET `shortname` = 'QI' WHERE `states`.`id` = 2450;
+UPDATE `states` SET `shortname` = 'SL' WHERE `states`.`id` = 2451;
+UPDATE `states` SET `shortname` = 'SI' WHERE `states`.`id` = 2452;
+UPDATE `states` SET `shortname` = 'SO' WHERE `states`.`id` = 2453;
+UPDATE `states` SET `shortname` = 'TA' WHERE `states`.`id` = 2455;
+UPDATE `states` SET `shortname` = 'TB' WHERE `states`.`id` = 2454;
+UPDATE `states` SET `shortname` = 'TL' WHERE `states`.`id` = 2456;
+UPDATE `states` SET `shortname` = 'VC' WHERE `states`.`id` = 2457;
+UPDATE `states` SET `shortname` = 'YU' WHERE `states`.`id` = 2458;
+UPDATE `states` SET `shortname` = 'ZA' WHERE `states`.`id` = 2459;
+
+
+
+
+
+
+abbreviation queries (priyanka)
+
+UPDATE `states` SET `shortname` = 'AC' WHERE `states`.`id` = 512;
+
+UPDATE `states` SET `shortname` = 'AL' WHERE `states`.`id` = 513;
+
+UPDATE `states` SET `shortname` = 'AP' WHERE `states`.`id` = 514;
+UPDATE `states` SET `shortname` = 'AM' WHERE `states`.`id` = 515;
+UPDATE `states` SET `shortname` = 'BA' WHERE `states`.`id` = 516;
+UPDATE `states` SET `shortname` = 'CE' WHERE `states`.`id` = 517;
+UPDATE `states` SET `shortname` = 'DF' WHERE `states`.`id` = 518;
+UPDATE `states` SET `shortname` = 'ES' WHERE `states`.`id` = 519;
+UPDATE `states` SET `shortname` = 'GO' WHERE `states`.`id` = 521;
+UPDATE `states` SET `shortname` = 'MA' WHERE `states`.`id` = 522;
+UPDATE `states` SET `shortname` = 'MT' WHERE `states`.`id` = 523;
+UPDATE `states` SET `shortname` = 'MS' WHERE `states`.`id` = 524;
+UPDATE `states` SET `shortname` = 'MG' WHERE `states`.`id` = 525;
+UPDATE `states` SET `shortname` = 'PA' WHERE `states`.`id` = 526;
+UPDATE `states` SET `shortname` = 'PB' WHERE `states`.`id` = 527;
+UPDATE `states` SET `shortname` = 'PR' WHERE `states`.`id` = 528;
+UPDATE `states` SET `shortname` = 'PE' WHERE `states`.`id` = 529;
+UPDATE `states` SET `shortname` = 'PI' WHERE `states`.`id` = 530;
+UPDATE `states` SET `shortname` = 'RN' WHERE `states`.`id` = 531;
+UPDATE `states` SET `shortname` = 'RS' WHERE `states`.`id` = 532;
+UPDATE `states` SET `shortname` = 'RJ' WHERE `states`.`id` = 533;
+UPDATE `states` SET `shortname` = 'RO' WHERE `states`.`id` = 534;
+UPDATE `states` SET `shortname` = 'RR' WHERE `states`.`id` = 535;
+UPDATE `states` SET `shortname` = 'SC' WHERE `states`.`id` = 536;
+UPDATE `states` SET `shortname` = 'SP' WHERE `states`.`id` = 537;
+UPDATE `states` SET `shortname` = 'SE' WHERE `states`.`id` = 538;
+UPDATE `states` SET `shortname` = 'TO' WHERE `states`.`id` = 539;
+
+
+
+UPDATE `states` SET `shortname` = 'NL' WHERE `states`.`id` = 667;
+UPDATE `states` SET `shortname` = 'YT' WHERE `states`.`id` = 675;
+
+
+UPDATE `states` SET `shortname` = 'AG' WHERE `states`.`id` = 1804;
+UPDATE `states` SET `shortname` = 'AL' WHERE `states`.`id` = 1805;
+UPDATE `states` SET `shortname` = 'AN' WHERE `states`.`id` = 1806;
+UPDATE `states` SET `shortname` = 'AR' WHERE `states`.`id` = 1807;
+UPDATE `states` SET `shortname` = 'AP' WHERE `states`.`id` = 1808;
+UPDATE `states` SET `shortname` = 'AT' WHERE `states`.`id` = 1809;
+UPDATE `states` SET `shortname` = 'AV' WHERE `states`.`id` = 1810;
+UPDATE `states` SET `shortname` = 'BA' WHERE `states`.`id` = 1811;
+UPDATE `states` SET `shortname` = 'BL' WHERE `states`.`id` = 1813;
+UPDATE `states` SET `shortname` = 'BN' WHERE `states`.`id` = 1814;
+UPDATE `states` SET `shortname` = 'BG' WHERE `states`.`id` = 1815;
+UPDATE `states` SET `shortname` = 'BI' WHERE `states`.`id` = 1816;
+UPDATE `states` SET `shortname` = 'BO' WHERE `states`.`id` = 1817;
+UPDATE `states` SET `shortname` = 'BZ' WHERE `states`.`id` = 1818;
+UPDATE `states` SET `shortname` = 'BS' WHERE `states`.`id` = 1819;
+UPDATE `states` SET `shortname` = 'BR' WHERE `states`.`id` = 1820;
+UPDATE `states` SET `shortname` = 'CE' WHERE `states`.`id` = 1824;
+UPDATE `states` SET `shortname` = 'CT' WHERE `states`.`id` = 1825;
+UPDATE `states` SET `shortname` = 'CH' WHERE `states`.`id` = 1826;
+UPDATE `states` SET `shortname` = 'CO' WHERE `states`.`id` = 1827;
+UPDATE `states` SET `shortname` = 'CS' WHERE `states`.`id` = 1828;
+UPDATE `states` SET `shortname` = 'CR' WHERE `states`.`id` = 1829;
+UPDATE `states` SET `shortname` = 'CN' WHERE `states`.`id` = 1830;
+UPDATE `states` SET `shortname` = 'FE' WHERE `states`.`id` = 1832;
+UPDATE `states` SET `shortname` = 'FI' WHERE `states`.`id` = 1833;
+UPDATE `states` SET `shortname` = 'FC' WHERE `states`.`id` = 1835;
+UPDATE `states` SET `shortname` = 'FR' WHERE `states`.`id` = 1837;
+UPDATE `states` SET `shortname` = 'GE' WHERE `states`.`id` = 1838;
+UPDATE `states` SET `shortname` = 'GO' WHERE `states`.`id` = 1839;
+
+UPDATE `states` SET `shortname` = 'AQ' WHERE `states`.`id` = 1840;
+UPDATE `states` SET `shortname` = 'LE' WHERE `states`.`id` = 1842;
+UPDATE `states` SET `shortname` = 'LC' WHERE `states`.`id` = 1843;
+UPDATE `states` SET `shortname` = 'LO' WHERE `states`.`id` = 1846;
+UPDATE `states` SET `shortname` = 'MC' WHERE `states`.`id` = 1849;
+UPDATE `states` SET `shortname` = 'MN' WHERE `states`.`id` = 1850;
+UPDATE `states` SET `shortname` = 'ME' WHERE `states`.`id` = 1852;
+UPDATE `states` SET `shortname` = 'MO' WHERE `states`.`id` = 1854;
+UPDATE `states` SET `shortname` = 'NO' WHERE `states`.`id` = 1860;
+UPDATE `states` SET `shortname` = 'PD' WHERE `states`.`id` = 1861;
+UPDATE `states` SET `shortname` = 'PR' WHERE `states`.`id` = 1862;
+UPDATE `states` SET `shortname` = 'PV' WHERE `states`.`id` = 1863;
+UPDATE `states` SET `shortname` = 'PG' WHERE `states`.`id` = 1864;
+UPDATE `states` SET `shortname` = 'PU' WHERE `states`.`id` = 1865;
+UPDATE `states` SET `shortname` = 'PC' WHERE `states`.`id` = 1866;
+UPDATE `states` SET `shortname` = 'PI' WHERE `states`.`id` = 1869;
+UPDATE `states` SET `shortname` = 'PN' WHERE `states`.`id` = 1870;
+UPDATE `states` SET `shortname` = 'PZ' WHERE `states`.`id` = 1871;
+UPDATE `states` SET `shortname` = 'RE' WHERE `states`.`id` = 1873;
+UPDATE `states` SET `shortname` = 'RN' WHERE `states`.`id` = 1874;
+UPDATE `states` SET `shortname` = 'RM' WHERE `states`.`id` = 1875;
+UPDATE `states` SET `shortname` = 'SA' WHERE `states`.`id` = 1876;
+UPDATE `states` SET `shortname` = 'SS' WHERE `states`.`id` = 1878;
+UPDATE `states` SET `shortname` = 'SV' WHERE `states`.`id` = 1879;
+UPDATE `states` SET `shortname` = 'SI' WHERE `states`.`id` = 1881;
+UPDATE `states` SET `shortname` = 'SO' WHERE `states`.`id` = 1882;
+UPDATE `states` SET `shortname` = 'TA' WHERE `states`.`id` = 1884;
+UPDATE `states` SET `shortname` = 'TE' WHERE `states`.`id` = 1885;
+
+UPDATE `states` SET `shortname` = 'TO' WHERE `states`.`id` = 1886;
+UPDATE `states` SET `shortname` = 'TP' WHERE `states`.`id` = 1888;
+UPDATE `states` SET `shortname` = 'TN' WHERE `states`.`id` = 1890;
+
+UPDATE `states` SET `shortname` = 'TV' WHERE `states`.`id` = 1891;
+UPDATE `states` SET `shortname` = 'UD' WHERE `states`.`id` = 1892;
+
+UPDATE `states` SET `shortname` = 'VA' WHERE `states`.`id` = 1895;
+UPDATE `states` SET `shortname` = 'VE' WHERE `states`.`id` = 1897;
+UPDATE `states` SET `shortname` = 'VB' WHERE `states`.`id` = 1898;
+UPDATE `states` SET `shortname` = 'VC' WHERE `states`.`id` = 1899;
+UPDATE `states` SET `shortname` = 'VR' WHERE `states`.`id` = 1900;
+UPDATE `states` SET `shortname` = 'VI' WHERE `states`.`id` = 1901;
+UPDATE `states` SET `shortname` = 'VT' WHERE `states`.`id` = 1902;
+
+
+
+
+UPDATE `states` SET `shortname` = 'BA' WHERE `states`.`id` = 1667;
+UPDATE `states` SET `shortname` = 'BB' WHERE `states`.`id` = 1668;
+UPDATE `states` SET `shortname` = 'BT' WHERE `states`.`id` = 1669;
+UPDATE `states` SET `shortname` = 'BE' WHERE `states`.`id` = 1670;
+UPDATE `states` SET `shortname` = 'JA' WHERE `states`.`id` = 1674;
+UPDATE `states` SET `shortname` = 'JB' WHERE `states`.`id` = 1675;
+UPDATE `states` SET `shortname` = 'JT' WHERE `states`.`id` = 1676;
+UPDATE `states` SET `shortname` = 'JI' WHERE `states`.`id` = 1677;
+UPDATE `states` SET `shortname` = 'KB' WHERE `states`.`id` = 1678;
+
+UPDATE `states` SET `shortname` = 'KS' WHERE `states`.`id` = 1679;
+UPDATE `states` SET `shortname` = 'KT' WHERE `states`.`id` = 1680;
+UPDATE `states` SET `shortname` = 'KI' WHERE `states`.`id` = 1681;
+UPDATE `states` SET `shortname` = 'MA' WHERE `states`.`id` = 1684;
+UPDATE `states` SET `shortname` = 'MU' WHERE `states`.`id` = 1685;
+UPDATE `states` SET `shortname` = 'NB' WHERE `states`.`id` = 1686;
+UPDATE `states` SET `shortname` = 'NT' WHERE `states`.`id` = 1687;
+UPDATE `states` SET `shortname` = 'PA' WHERE `states`.`id` = 1688;
+UPDATE `states` SET `shortname` = 'RI' WHERE `states`.`id` = 1689;
+UPDATE `states` SET `shortname` = 'SN' WHERE `states`.`id` = 1692;
+UPDATE `states` SET `shortname` = 'ST' WHERE `states`.`id` = 1693;
+UPDATE `states` SET `shortname` = 'SA' WHERE `states`.`id` = 1695;
+
+UPDATE `states` SET `shortname` = 'SG' WHERE `states`.`id` = 1694;
+UPDATE `states` SET `shortname` = 'SB' WHERE `states`.`id` = 1696;
+UPDATE `states` SET `shortname` = 'SS' WHERE `states`.`id` = 1697;
+UPDATE `states` SET `shortname` = 'SU' WHERE `states`.`id` = 1698;
+
+
+
+-----------------2-march-2021-------------------------------------------------------------
+
+INSERT INTO `modules` (`id`, `module_slug`, `module_name`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'faq_category', 'FAQ Category', '1', '2021-02-02 09:50:27', NULL, NULL);
+
+UPDATE `modules` SET `module_name` = 'Manage Help Center' WHERE `modules`.`id` = 17;
+
+UPDATE `modules` SET `module_name` = 'Manage Help Center Category' WHERE `modules`.`id` = 43;
+
+UPDATE `modules` SET `module_slug` = 'helpcenter' WHERE `modules`.`id` = 17;
+
+UPDATE `modules` SET `module_slug` = 'helpcenter_category' WHERE `modules`.`id` = 43;
+
+
+
+
+INSERT INTO `modules` (`id`, `module_slug`, `module_name`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'reported_issues_products', 'Reported Issues', '1', '2021-02-02 09:50:27', '2021-03-02 11:53:25', NULL);
+
+INSERT INTO `modules` (`id`, `module_slug`, `module_name`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'user_search', 'User Search', '1', '2021-02-02 09:50:27', '2021-03-02 11:53:25', NULL);
+
+INSERT INTO `modules` (`id`, `module_slug`, `module_name`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'health_claims', 'Health Claims', '1', '2021-02-02 09:50:27', '2021-03-02 11:53:25', NULL);
+
+INSERT INTO `modules` (`id`, `module_slug`, `module_name`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'investortracker', 'Investor Tracker', '1', '2021-02-02 09:50:27', '2021-03-02 11:53:25', NULL);
+
+
+ 
+---------------------------------4-march-21-----------done on live---------------------------
+ 
+ALTER TABLE `site_settings` CHANGE `meta_keyword` `meta_keyword` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+ 
+ 
+ALTER TABLE `site_settings` CHANGE `meta_keyword` `meta_keyword` LONGTEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+ 
+
+---------------------------6-march-21-------Dont add anywhere---------------
+
+
+UPDATE `email_template` SET `template_html` = '<p>Dear ##USER_NAME##,</p>\r\n<p>Dispensary ##SELLER_NAME## has uploaded profile documents for verification.</p>\r\n<p>&nbsp; <strong>Please click on below button to view details.</strong></p>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br />##APP_NAME## Team&nbsp; &nbsp;</p>\r\n<p>&nbsp;</p>', `deleted_at` = NULL, `created_at` = NULL WHERE `email_template`.`id` = 132;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br />Admin has ##STATUS## your reported issue request for this product ##PRODUCT_NAME##.<br />\r\n<b>Note</b> : ##NOTE##\r\n</p>\r\n<p>&nbsp;</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view product list.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 152;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; Admin,<br /><br />Buyer ##BUYER_NAME## has reported issue for this product ##PRODUCT_NAME##</p>\r\n<p>Note: ##Reported_Note##</p>\r\n<p><strong>&nbsp; &nbsp; &nbsp; &nbsp;Please click on below button to view product list</strong> &nbsp;</p>\r\n<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>\r\n<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View</a></p>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 151;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br />##BUYER_NAME## has added the review ##REVIEW## with rating ##RATING## stars for the product ##PRODUCT_NAME## . he get an credit of ##REVIEW_WALLET_AMOUNT## into his wallet.</p>\r\n<p>&nbsp;</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 150;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br />You have added the review ##REVIEW## with rating ##RATING## stars for the product ##PRODUCT_NAME## . you get an credit of ##REVIEW_WALLET_AMOUNT## into your wallet.</p>\r\n<p>&nbsp;</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 149;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br />Admin <strong>##ADMIN_NAME##</strong> has made your product : <strong>##PRODUCT_NAME##</strong> as trending.</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 145;
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br />The refund payment for order number <b>##ORDER_NO##</b> has been settled successfully. </p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<br/>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 144;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br />The payment for order number <b>##ORDER_NO##</b> has been settled successfully. Now <b>##SELLER_NAME##</b> can process the order further.</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<br/>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 143;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br />##MESSAGE##</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 141;
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br />Dispensary <strong>##SELLER_NAME##</strong> has made your product : <strong>##PRODUCT_NAME##</strong> as out of stock.</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 137;
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br />Admin <strong>##ADMIN_NAME##</strong> has made your product : <strong>##PRODUCT_NAME##</strong> as out of stock.</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 136;
+
+UPDATE `email_template` SET `template_html` = '<p>Hello ##USER_NAME##<br/>&nbsp; &nbsp;<br /> Please click the link below to further verify your age for the order ##ORDER_NO## to be shipped. This is the only time you will be required to verify your age on Chow420. <br/>\r\n&nbsp;&nbsp;&nbsp;&nbsp;<br/><a href=\"##AGE_URL##\" style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\">upload details</strong></a></p> <p><br/>&nbsp;&nbsp;</p> <p>&nbsp;<br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 134;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br />##USER## added new post ##POST_TITLE##.&nbsp;</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 129;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br /><strong>##SELLER_NAME##</strong>&nbsp; has added the answer <strong>##REPLY##</strong> on question <strong>##COMMENT##&nbsp;</strong> for the product&nbsp; <strong>##PRODUCT_NAME##</strong>.</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 127;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br /><strong>##SELLER_NAME##</strong> has added the answer <strong>##REPLY##</strong> on question <strong>##COMMENT##</strong>&nbsp; for the product <strong>##PRODUCT_NAME##</strong>.</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 126;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br /><strong>##SELLER_NAME##</strong>&nbsp; has updated the answer <strong>##REPLY##</strong> on question <strong>##COMMENT##</strong> for the product <strong>##PRODUCT_NAME##</strong>.</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 125;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br /><strong>##SELLER_NAME##</strong> has updated the answer <strong>##REPLY##</strong> on question&nbsp;<strong> ##COMMENT##&nbsp;</strong> for the product <strong>##PRODUCT_NAME##.</strong></p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 124;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br /><strong>##SELLER_NAME##</strong> has added the question <strong>##COMMENT##</strong> for the product <strong>##PRODUCT_NAME##</strong> .</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 123;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br /><strong>##BUYER_NAME##</strong> has added the question <strong>##COMMENT##</strong> for the product <strong>##PRODUCT_NAME##</strong> .</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 122;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br /><strong>##BUYER_NAME##</strong>&nbsp; has updated the question <strong>##COMMENT##</strong> for the product <strong>##PRODUCT_NAME##</strong> .</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 121;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br /><strong>##SELLER_NAME##</strong> has updated the question <strong>##COMMENT##</strong> for the product <strong>##PRODUCT_NAME##</strong> .</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 120;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br />You have successfully selected the <strong>##PLAN_NAME##</strong> membership plan of amount ##AMOUNT## </p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 119;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Dear ##USER_NAME##,</p>\r\n<p>A new user <strong>##EMAIL## </strong> has been registered successfully as a dispensary having <strong>##PLAN_NAME##</strong> membership plan of amount ##AMOUNT##</p>\r\n\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<br/>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br/>\r\n##APP_NAME## Team&nbsp; &nbsp;</p>\r\n<p>&nbsp;</p>', `deleted_at` = NULL, `created_at` = NULL WHERE `email_template`.`id` = 118;
+
+UPDATE `email_template` SET `template_html` = '<p>Dear ##USER_NAME##,</p>\r\n<p>A new user <strong>##EMAIL## </strong> has been registered successfully as a <strong>##USER_ROLE##</strong></p>\r\n\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<br/>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br/>\r\n##APP_NAME## Team&nbsp; &nbsp;</p>\r\n<p>&nbsp;</p>', `deleted_at` = NULL, `created_at` = NULL WHERE `email_template`.`id` = 117;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Dear ##USER_NAME##,</p>\r\n<p>A new user <a href=\"##URL##\" target=\"_blank\">##EMAIL##</a> signup in the chow $##AMOUNT## successfully credited to wallet.</p>\r\n\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<br/>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br/>\r\n##APP_NAME## Team&nbsp; &nbsp;</p>\r\n<p>&nbsp;</p>', `deleted_at` = NULL, `created_at` = NULL WHERE `email_template`.`id` = 116;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Dear ##USER_NAME##,</p>\r\n<p>Order with having order number ##ORDER_NO##&nbsp; is pending please ship this order.</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<p>&nbsp;</p>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br />##APP_NAME## Team&nbsp; &nbsp;</p>\r\n<p>&nbsp;</p>', `deleted_at` = NULL, `created_at` = NULL WHERE `email_template`.`id` = 115;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Dear ##USER_NAME##,</p>\r\n<p>Seller ##SELLER_NAME## has not ship the order ##ORDER_NO## </p>\r\n\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<br/>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n\r\n<p>Thanks and Regards, &nbsp; &nbsp; &nbsp;<br/>\r\n##APP_NAME## Team&nbsp; &nbsp;</p>\r\n<p>&nbsp;</p>', `deleted_at` = NULL, `created_at` = NULL WHERE `email_template`.`id` = 114;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Dear ##SELLER_NAME##,</p>\r\n<p>##ADMIN_NAME## has completed withdrawal request for amount <strong>##AMOUNT##</strong></p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 113;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##SELLER_NAME##,<br /><br />Admin <strong> ##ADMIN_NAME##</strong> has rejected your profile details.<br/>\r\n<strong>Reason:</strong> ##REASON##\r\n</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 111;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,<br /><br />Admin <strong>##ADMIN_NAME##</strong> has rejected your id proof verification.<br/>\r\n<strong>##REASON##</strong>\r\n</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 109;
+
+ 
+------------------------------------8-march-21---------done on both----------------------
+ 
+UPDATE `modules` SET `module_slug` = 'help_center_category' WHERE `modules`.`id` = 43;
+
+
+=============================================================================================
+Added by Harshada
+On date 15 mar 2021
+=================================================remain on live======================
+
+ALTER TABLE `site_settings` ADD `highlight_header` TEXT NOT NULL AFTER `sandbox_tax_url`, ADD `highlight_sub_header` TEXT NOT NULL AFTER `highlight_header`;
+
+
+-----------Harshada----------------------16-march-21-------remain on live-------------------
+ 
+
+
+ALTER TABLE `product` ADD `ingredients` TEXT NOT NULL AFTER `description`, ADD `suggested_use` TEXT NOT NULL AFTER `ingredients`, ADD `amount_per_serving` TEXT NOT NULL AFTER `suggested_use`;
+
+
+CREATE TABLE `reported_effects` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `image` text NOT NULL,
+  `is_active` enum('0','1') NOT NULL COMMENT '0 - Active, 1 - Deactive',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `lab_result` (
+  `id` int(11) NOT NULL,
+  `lab_result` text NOT NULL,
+  `is_active` enum('0','1') NOT NULL COMMENT '0 - Active, 1 - Deactive',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `cannabinoids` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `is_active` enum('0','1') NOT NULL COMMENT '0 - Active, 1 - Deactive',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `product_cannabinoids` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `cannabinoids_id` int(11) NOT NULL COMMENT 'primary key of table cannabinoids ',
+  `percent` float(10,2) NOT NULL,
+  `is_active` tinyint(4) NOT NULL COMMENT '0 - Active, 1 - Deactive',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+ALTER TABLE `lab_result` CHANGE `is_active` `is_active` TINYINT(4) NOT NULL COMMENT '0 - Active, 1 - Deactive';
+
+
+ALTER TABLE `lab_result` CHANGE `is_active` `is_active` TINYINT(4) NOT NULL DEFAULT '1' COMMENT '0 - Active, 1 - Deactive';
+
+
+-----------------------------17-march-21------------remain on live-------------
+
+
+ALTER TABLE `cannabinoids` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`id`);
+
+
+ALTER TABLE `cannabinoids` CHANGE `is_active` `is_active` TINYINT(4) NOT NULL DEFAULT '0' COMMENT '0 - Active, 1 - Deactive';
+
+
+ALTER TABLE `reported_effects` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`id`);
+
+ALTER TABLE `reported_effects` CHANGE `is_active` `is_active` ENUM('0','1') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT '1 - Active, 0 - Deactive';
+
+
+-------------------------20-march-21---------------remain on live----------------
+
+
+ALTER TABLE `product_cannabinoids` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`id`);
+
+
+ALTER TABLE `product_cannabinoids` CHANGE `is_active` `is_active` TINYINT(4) NOT NULL DEFAULT '1' COMMENT '1 - Active, 0 - Deactive';
+
+
+ALTER TABLE `lab_result` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`id`);
+
+
+create reported_effects folder is uploads folder
+
+
+
+
+--------------------------29-march-21--------remain on live---------------------------------
+
+
+INSERT INTO `static_pages` (`id`, `page_slug`, `is_active`, `orderby`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'earn-referal', '1', '16', NULL, NULL, NULL);
+
+UPDATE `static_pages` SET `created_at` = '2021-03-29 11:00:42', `updated_at` = '2021-03-29 11:00:42', `deleted_at` = NULL WHERE `static_pages`.`id` = 29;
+
+
+INSERT INTO `static_pages_translation` (`id`, `static_page_id`, `page_title`, `page_desc`, `locale`, `meta_keyword`, `meta_desc`, `created_at`, `updated_at`, `deleted_at`, `menuin_footer`) VALUES (NULL, '25', 'Earn $15 for referals', '<p>http://localhost:8080/login</p>', 'en', 'Earn $15 for referals', '<p>Earn $15 for referals</p>', NULL, '2020-12-17 00:00:00', NULL, '0');
+
+
+UPDATE `static_pages_translation` SET `static_page_id` = '29', `created_at` = NULL, `deleted_at` = NULL WHERE `static_pages_translation`.`id` = 29;
+
+
+
+--------- Added alter script by Harshada on date ----remain on live---------------
+ALTER TABLE `product_cannabinoids` CHANGE `percent` `percent` FLOAT(10,3) NOT NULL;
+
+
+----------------------------30-march-21---------remain on live-----------
+
+
+INSERT INTO `static_pages` (`id`, `page_slug`, `is_active`, `orderby`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'sell-on-chow420', '1', '17', '2021-03-30 11:00:42', '2021-03-30 11:00:42', NULL);
+
+
+INSERT INTO `static_pages_translation` (`id`, `static_page_id`, `page_title`, `page_desc`, `locale`, `meta_keyword`, `meta_desc`, `created_at`, `updated_at`, `deleted_at`, `menuin_footer`) VALUES (NULL, '29', 'Sell on Chow420', '<p>http://localhost:8080/signup_seller</p>', 'en', 'Sell on Chow420', '<p>Sell on Chow420</p>', NULL, '2021-03-30 00:00:00', NULL, '0');
+
+
+UPDATE `static_pages_translation` SET `static_page_id` = '30', `created_at` = NULL, `deleted_at` = NULL WHERE `static_pages_translation`.`id` = 30;
+
+
+------------------------31-march-21--March-design-phase1--------remain on both---------------
+
+create folder uploads/additional_product_image 
+
+ALTER TABLE `product`  ADD `terpenes` TEXT NULL DEFAULT NULL  AFTER `is_trending`,  ADD `additional_product_image` TEXT NULL DEFAULT NULL  AFTER `terpenes`;
+
+
+
+
+CREATE TABLE `first_level_category_product_details` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `image` text NOT NULL,
+ `description` text NOT NULL,
+ `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+ `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+ `deleted_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+
+ALTER TABLE `first_level_category_product_details` ADD `category_id` INT NOT NULL AFTER `id`;
+
+
+ALTER TABLE `first_level_category_product_details` ADD `is_active` INT(11) NOT NULL DEFAULT '0' AFTER `description`;
+
+
+create folder : first_level_category_productdetail
+
+
+--------------------------1-april-2021-----------------------------------------------------
+
+ALTER TABLE `coupon` ADD `coupon_availability_status` TINYINT NULL DEFAULT '0' AFTER `is_active`;
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Coupon code availability status mail to admin ', 'Coupon Code Availability Status Mail', 'Chow420', 'team@chow420.com', '<p>Dear ##ADMIN_NAME##,</p>\r\n<p>Seller ##SELLER_NAME## has been made Coupon ##COUPON_CODE## as ##STATUS##</p>', '##ADMIN_NAME##~##SELLER_NAME##~##COUPON_CODE##~##STATUS##', NULL, NULL, NULL);
+
+
+ALTER TABLE `site_settings` ADD `tiktok_url` VARCHAR(255) NULL DEFAULT NULL AFTER `telegram_url`;
+
+
+
+
+
+--------------------------3-april-2021-------------------------------------------------------
+
+UPDATE `email_template` SET `template_html` = '<p>Seller ##SELLER_NAME## has been made Coupon ##COUPON_CODE## as <b>##STATUS##</b></p>\r\n<p><br/>Thanks and Regards,<br />##APP_NAME##</p>', `template_variables` = '##ADMIN_NAME##~##SELLER_NAME##~##COUPON_CODE##~##STATUS##~##APP_NAME##', `deleted_at` = NULL, `created_at` = NULL, `updated_at` = NULL WHERE `email_template`.`id` = 154;
+
+
+UPDATE `email_template` SET `template_html` = '<p>Dear ##ADMIN_NAME##,</p>\r\n<p>Seller ##SELLER_NAME## has been made Coupon <b>##COUPON_CODE##<b> as <b>##STATUS##</b></p>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>' WHERE `email_template`.`id` = 154;
+
+UPDATE `email_template` SET `template_html` = '<p>Dear ##ADMIN_NAME##,</p>\r\n<p>Seller ##SELLER_NAME## has been made Coupon <b>##COUPON_CODE##</b> as <b>##STATUS##</b></p>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL, `created_at` = NULL, `updated_at` = NULL WHERE `email_template`.`id` = 154;
+
+ 
+ 
+INSERT INTO `static_pages` (`id`, `page_slug`, `is_active`, `orderby`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'affiliate', '1', '18', '2021-03-30 11:00:42', '2021-03-30 11:00:42', NULL);
+ 
+ 
+INSERT INTO `static_pages_translation` (`id`, `static_page_id`, `page_title`, `page_desc`, `locale`, `meta_keyword`, `meta_desc`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, '29', 'Affiliate', '<p>https://www.shareasale.com/shareasale.cfm?merchantID=101178</p>', 'en', 'Affiliate', '<p>Affiliate</p>', NULL, '2021-03-31 00:00:00', NULL);
+ 
+ 
+INSERT INTO `static_pages` (`id`, `page_slug`, `is_active`, `orderby`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, 'giveback', '1', '19', '2021-03-30 11:00:42', '2021-03-30 11:00:42', NULL);
+ 
+ 
+INSERT INTO `static_pages_translation` (`id`, `static_page_id`, `page_title`, `page_desc`, `locale`, `meta_keyword`, `meta_desc`, `created_at`, `updated_at`, `deleted_at`) VALUES (NULL, '30', 'GiveBack', '<p>https://beta.chow420.com</p>', 'en', 'GiveBack', '<p>GiveBack</p>', NULL, '2021-03-31 00:00:00', NULL);
+ 
+ 
+---------------------------6-april-21-----------------------------------
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'New Dispute Message', 'New Dispute Message', 'Chow420', 'team@chow420.com', '<p>Hello&nbsp; ##USER_NAME##,<br /><br />##USER## has sent message on dispute chat for order no \r\n##ORDER_NO##</p>\r\n<div style=\"text-align: center;\"><strong>Please click on below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', '##USER_EMAIL##~##USER_NAME##~##SITE_LINK##~##USER##~##URL##~##SUBJECT##~##ORDER_NO##~##APP_NAME##', NULL, '2016-05-18 08:11:57', '2020-08-04 05:01:49');
+
+
+
+
+
+------------------------------7/4/2021----------done on live------all above----------------------------------
+
+UPDATE `static_pages` SET `page_slug` = 'cashback', `deleted_at` = NULL WHERE `static_pages`.`id` = 30;
+
+UPDATE `static_pages_translation` SET `page_title` = 'CashBack', `meta_keyword` = 'CashBack', `meta_desc` = '<p>CashBack</p>', `created_at` = NULL, `deleted_at` = NULL WHERE `static_pages_translation`.`id` = 30;
+
+
+
+
+
+
+---additinal phase branch------26-april-21--------------------------------------------
+
+
+
+ALTER TABLE `site_settings` ADD `cashback_percentage` DECIMAL(16,2) NULL DEFAULT NULL AFTER `highlight_sub_header`;
+
+
+ALTER TABLE `buyer_wallet` CHANGE `type` `type` ENUM('Referal','Review','OrderPlaced','Refered','Reported_Issue','Cashback') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Cashback Amount Credited To Users Account', 'You got money - Cashback Successful', 'Chow420', 'team@chow420.com', '<p>Hello&nbsp; ##USER_NAME##,</p>\r\n<p><br /> The amount of cashback ##CASHBACK_AMOUNT## has been credited to your wallet!</p>\r\n<p>&nbsp;</p>\r\n<div style=\"text-align: center;\"><strong>Please click on the below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', '##USER_NAME##~##MESSAGE##~##URL##~##SUBJECT##~##ORDER_NO##~##APP_NAME##~##CASHBACK_AMOUNT##', NULL, '2016-05-18 13:41:57', '2021-03-02 07:43:38');
+
+
+ALTER TABLE `transaction_details` ADD `cashback` DECIMAL(16,3) NULL DEFAULT NULL AFTER `buyer_wallet_amount`;
+
+
+ALTER TABLE `transaction_details` ADD `cashback_percentage` DECIMAL(16,3) NULL DEFAULT NULL AFTER `cashback`;
+
+--------------------------------27-april-21--------------------------------
+
+UPDATE `email_template` SET `template_html` = '<p>Hello&nbsp; ##USER_NAME##,</p>\r\n<p><br /> The amount of cashback ##CASHBACK_AMOUNT## will credited to your wallet when order get completed!</p>\r\n<p>&nbsp;</p>\r\n<div style=\"text-align: center;\"><strong>Please click on the below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', `deleted_at` = NULL WHERE `email_template`.`id` = 156;
+
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Cashback Amount Credited To Users Account', 'You got money - Cashback Successful', 'Chow420', 'team@chow420.com', '<p>Hello&nbsp; ##USER_NAME##,</p>\r\n<p><br /> The amount of cashback ##CASHBACK_AMOUNT## credited to your wallet for order ##ORDER_NO##!</p>\r\n<p>&nbsp;</p>\r\n<div style=\"text-align: center;\"><strong>Please click on the below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', '##USER_NAME##~##MESSAGE##~##URL##~##SUBJECT##~##ORDER_NO##~##APP_NAME##~##CASHBACK_AMOUNT##', NULL, '2016-05-18 13:41:57', '2021-03-02 07:43:38');
+
+
+
+
+
+INSERT INTO `email_template` (`id`, `template_name`, `template_subject`, `template_from`, `template_from_mail`, `template_html`, `template_variables`, `deleted_at`, `created_at`, `updated_at`) VALUES (NULL, 'Cashback Amount Debited From Users Account', 'Cashback Cancelled Successful', 'Chow420', 'team@chow420.com', '<p>Hello&nbsp; ##USER_NAME##,</p>\r\n<p><br /> The amount of cashback ##CASHBACK_AMOUNT## debited from your wallet for order ##ORDER_NO##!</p>\r\n<p>&nbsp;</p>\r\n<div style=\"text-align: center;\"><strong>Please click on the below button to view details.</strong></div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\">&nbsp;</div>\r\n<div style=\"text-align: center;\"><a style=\"background: #873dc8; color: #fff; text-align: center; border-radius: 4px; padding: 15px 18px; text-decoration: none;\" href=\"##URL##\" target=\"_blank\" rel=\"noopener\">View Details</a></div>\r\n<p><br />Thanks and Regards,<br />##APP_NAME##</p>', '##USER_NAME##~##MESSAGE##~##URL##~##SUBJECT##~##ORDER_NO##~##APP_NAME##~##CASHBACK_AMOUNT##', NULL, '2016-05-18 13:41:57', '2021-03-02 07:43:38');
+
+
+----------------------------19-may-21--------remain on both----------------------------------
+
+
+ALTER TABLE `product` ADD `coa_link` TEXT NULL DEFAULT NULL AFTER `additional_product_image`;
+
+
+UPDATE `spectrum` SET `name` = 'Others' WHERE `spectrum`.`id` = 5;

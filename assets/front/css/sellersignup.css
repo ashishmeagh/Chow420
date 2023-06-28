@@ -1,0 +1,384 @@
+
+
+/** Login 2 start **/
+.savebuttons {
+    width: 40px;
+    height: 40px;
+    line-height: 38px;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #873dc8;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0px 0px 19px 0px rgba(184, 51, 204, 0.49);
+}
+.savebuttons:hover{
+    background-color: #484848;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.46);
+}
+.savebuttons img{
+    filter: brightness(0) invert(1);
+}
+.mainsteps-chow{ background-color: #F3F3F3; min-height: 100vh;}
+.cart-section-block {margin: 30px auto 43px; max-width: 780px; text-align: center; width: 100%;text-align: center;position: relative;}
+.cart-section-block::before {background: #e8e8e8;content: "";display: block;height:7px;left:0px;right: 0; margin:0 auto; position: absolute; text-align: center; top:23px; width:43%;}
+.cart-step-one {display: inline-block; position: relative; width: 23%;}
+.step-one {background: #fff; border: 4px solid rgb(232, 232, 232); border-radius: 50%; display: inline-block; height: 50px; padding-top: 0px; text-align: center; width: 50px;}
+.step-active {background: #873dc8; border: 4px solid rgb(184, 51, 204);}
+.num-step {color: #5a5a5a; font-size: 24px;display: block;line-height: 40px;}
+.step-active .num-step{color: #ffffff;}
+.num-step-hide {display: none;}
+.step-tick {display: block; margin-top: 10px;}
+.name-step {bottom: -33px; color: #545454; font-size: 16px; left: 0px; position: absolute;}
+.name-step-confirm {top:60px; left:0px; position: absolute;display: block;color: #545454; font-size: 15px;width: 100%;}
+.step-tick > img {width: 22px;}
+.name-step-secu {bottom: -33px; left: -24px; position: absolute; color: #545454; font-size: 16px;}
+.buying-process-main {margin: 0px 0 70px;}
+.cart-add-btn-con{margin-top: 0;}
+.login-sign-head{font-size:20px;color:#58ba47;margin:20px -30px;background-color:#f9f9f9;padding:10px 20px}
+.check-bx input.css-checkbox[type="checkbox"] + label.css-label{background-position:0 0;background-repeat:no-repeat;cursor:pointer;display:inline-block;font-size:20px;height:23px;padding-left:30px;vertical-align:middle;color:#504f4f;font-weight:400;line-height:22px}
+.div-white-box {
+    padding: 30px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    box-shadow: 0 0.1rem 0 0 rgba(0,0,0,.25);
+    border: .1rem solid #ddd;
+    background-color: #fff;
+}
+.prv-btn{
+        background: #873dc8;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border: none;
+    color: #fff;
+        cursor: pointer;
+    padding: 12px 50px 11px 50px;
+    letter-spacing: 1px;
+    font-size: 15px;
+    font-weight: 400;
+    border-radius: 50px; float: right;
+}
+.prv-btn:hover{
+    background: #7e1f8c;
+    color: #fff;
+}
+.prv-btn.backbtn-prv {
+    background-color: #4a4a4a;
+    color: #fff; float: left;
+}
+.prv-btn.backbtn-prv:hover{
+    background-color: #000;
+    color: #fff;
+}
+.buttonsection-bottom {
+    max-width: 850px;
+    margin: 0 auto;
+}
+.login-2 {
+    top: 0;
+    width: 100%;
+    bottom: 0;
+    opacity: 1;
+    /*min-height: 100vh;*/
+    text-align: center;
+    position: relative;
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+}
+.login-2 .form-section {
+    max-width: 440px;
+    margin: 0 auto;
+}
+.login-2 .form-section .social-list li {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+.login-2 .logo-2 img{
+    margin-bottom: 20px;
+    height: 60px;
+}
+.login-2 .form-section .thembo{
+    margin-left: 4px;
+}
+.login-2 .form-section h3 {
+    margin: 0 0 25px;
+    font-size: 20px;
+    font-weight: 400;
+    color: #505050;
+    text-align: center;
+}
+.login-2 .form-section .form-group {
+    margin-bottom: 25px;
+}
+.login-2 .form-section .form-box {
+    /*float: left;*/
+    width: 100%;
+    position: relative;
+}
+.login-2 .form-section .form-box input {
+    /*float: left;*/
+    width: 100%;
+    padding: 11px 20px;
+    border-radius: 4px;
+}
+.login-2 .form-section .input-text {
+    font-size: 14px;
+    outline: none;
+    background: #e8e8e8;
+    color: #616161;
+    border-radius: 3px;
+    border: 1px solid #e8e8e8;
+}
+.login-2 .form-section .form-box i {
+    position: absolute;
+    top: 8px;
+    left: 20px;
+    font-size: 19px;
+}
+.login-2 .form-section .checkbox .terms{
+    margin-left: 3px;
+}
+.login-2 .form-section .btn-md {
+    cursor: pointer;
+    padding: 12px 50px 11px 50px;
+    letter-spacing: 1px;
+    font-size: 15px;
+    font-weight: 400;
+    border-radius: 50px;
+}
+.login-2 .form-section input[type=checkbox], input[type=radio] {
+    margin-right: 3px;
+}
+.login-2 .form-section button:focus {
+    outline: none;
+    outline: 0 auto -webkit-focus-ring-color;
+}
+.login-2 .form-section .btn-theme.focus, .btn-theme:focus {
+    box-shadow: none;
+}
+.login-2 .form-section .btn-theme {
+    background: #873dc8;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border: none;
+    color: #fff;
+}
+.login-2 .form-section .btn-theme:hover {
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.2);
+}
+.login-2 .none-2{
+    display: none;
+}
+.login-2 .logo{
+    top: 40px;
+    position: absolute;
+    left: 65px;
+}
+.login-2 .form-section .terms{
+    margin-left: 3px;
+}
+.login-2 .form-section .checkbox {
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+.login-2 .form-section .form-check{
+    float: left;
+    margin-bottom: 0;
+}
+.login-2 .form-section .form-check a {
+    color: #616161;
+    float: right;
+}
+.login-2 .form-section .form-check-input {
+    position: absolute;
+    margin-left: 0;
+}
+.login-2 .form-section .form-check label::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 2px;
+    margin-left: 0;
+    border: 1px solid #c5c3c3;
+    border-radius: 3px;
+    background-color: #fff;
+    left: 0;
+}
+.login-2 .form-section .form-check-label {
+    padding-left: 35px;
+    margin-bottom: 0;
+    font-size: 14px;
+    color: #616161; position: relative; text-align: left;
+}
+.login-2 .form-section .checkbox-theme input[type="checkbox"]:checked + label::before {
+    background-color: #873dc8;
+    border-color: #873dc8;
+}
+.login-2 .form-section input[type=checkbox]:checked + label:before {
+    font-weight: 300;
+    color: #f3f3f3;
+    line-height: 16px;
+    font-size: 11px;
+    content: "\2713";
+    text-align: center;
+}
+.login-2 .form-section input[type=checkbox], input[type=radio] {
+    margin-top: 4px; visibility: hidden;
+}
+.login-2 .form-section a.forgot-password {
+    font-size: 14px;
+    color: #616161;
+    float: right;
+    line-height: 45px;
+}
+
+
+/*step2*/
+.login-2 .form-section.step-secnds-main-div{
+    max-width: 850px;
+    margin:0 auto; width: 100%;
+}
+.title-p-details{
+    font-size: 20px; margin-bottom: 35px; text-align: left; position: relative;padding-right: 80px;
+}
+.textareaadress {
+    background-color: #e8e8e8;
+    padding: 10px 20px;
+    width: 100%;
+    border: none;
+    height: 100px; display: block; color: #020202;
+}
+.login-2 .form-section .select-style{
+    padding: 0;
+    width: 100%;
+    background-position: center right;
+    background-color: #e8e8e8;
+    background-image: url(../images/select-arrow.png);
+    background-repeat: no-repeat;
+    display: block;
+    color: #020202;
+    height: 44px;
+    border-radius: 3px;
+    border: none;
+    box-shadow: none;
+}
+.login-2 .form-section .select-style select {
+    padding: 4px 20px 3px 20px;
+    width: 100%;
+    color: #4b4647;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-indent: 3px;
+    height: 100%;
+}
+.borderlgn-d{
+    height: 1px;
+    width: 100%;
+    background-color: #ccc;
+    margin: 40px 0; 
+}
+/*file input css start here*/
+.btn-file {position: relative;overflow: hidden;}
+.btn-file input[type=file] {position: absolute;top: 0;right: 0;min-width: 100%;min-height: 100%;text-align: right;opacity: 0;background:  transparent;cursor: inherit;display: block;}
+/* IE 10 fix */
+.btn-file ::-ms-browse {width:100%;height:100%;}
+.btn.btn-primary.btn-file {background: #c42881;border-color: #c42881;border-radius: 0 ;color: #fff;display: block;height: 41px;float: right;
+padding-top: 6px;    max-width: 92px; width: 100%;}
+.user-box .input-group {border-collapse: separate;max-width: 100%;position: relative;width: 100%; border: 1px solid #dadada;border-radius: 3px;}
+.glyphicon.glyphicon-trash, .glyphicon.glyphicon-upload, .glyphicon.glyphicon-file.kv-caption-icon {color: #888;font-weight: normal;}
+.form-control.file-caption.kv-fileinput-caption { width: 100%;     background: #fff;  border: 0;box-shadow: none;height: 41px;max-width:50%;width: 100%;}
+.upload-block {margin-bottom: 25px;}
+.btn.btn-primary.btn-file.btn-gry {background: #dbdbdb;border-color: #dfdfdf;    padding: 1px;}
+.btn.btn-primary.btn-file {background: #c42881 ;border-color: #c42881;border-radius: 0;color: #fff;display: block;float: right;height: 41px;
+max-width: 92px;padding-top: 6px;width: 100%;}
+.btn-file {overflow: hidden;position: relative;}
+.btn.btn-gry.btn-primary.btn-file .file {color: #3c3c3c;font-size: 16px;opacity: 1;padding:8px 11px; display:block;width: 100%;}
+.btn.btn-gry.btn-primary.btn-file .file:hover{ text-decoration: none;}
+.btn.btn-primary.btn-file.remove {max-width: 30px;padding: 10px 0;width: 100%;}
+a.file i {color: #fff;}
+.audio-job select.droup {font-size: 14px;}
+.input-bx.d-se {margin-bottom: 0;}
+.input-group-addon .fa.fa-calendar {font-size: 20px;}
+.upload-block .fa.fa-trash {
+    color: #888;
+}
+/** Login 2 end **/
+
+/*step 3*/
+
+.titl-slr-sgnup {
+    font-size: 15px;
+    font-weight: 300;
+    color: #797979;
+    letter-spacing: 0.4px;
+}
+.price-plan-box {
+    max-width: 230px;
+    text-align: center;
+    background-color: #fff;
+    padding: 60px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    width: 100%;
+    margin: 10px;
+}
+.price-title {
+    font-size: 30px; font-weight: 300;
+}
+.titlepricelrm {
+    font-size: 14px;
+    color: #873dc8;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+.price-plan-box.silverbox-bx {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 12px 0px rgba(51, 51, 51, 0.12);
+    border: 1px solid #ccc;
+}
+.silverbox-bx .titl-slr-sgnup{color: #aa8eaf;}
+
+/*step 4*/
+.payment-debitcard {
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0.1rem 0 0 rgba(0,0,0,.25);
+    border: .1rem solid #ddd;
+    background-color: #fff;
+    max-width: 740px; 
+    margin:20px auto 30px;
+}
+.login-2 .form-section.widthauto{max-width: 100%;}
+.title-p-details.select-sub-pln {max-width: 740px;margin: 0 auto 10px;padding-right: 0;}
+.cart-section-block.byr-slr-step::before{
+        width: 22%;
+}
+
+
+
+
+@media all and (max-width:767px){
+.mainsteps-chow {background-color: #fff;}
+.div-white-box{padding: 20px 20px 0; margin-bottom: 0px;  border: none; box-shadow: none;}
+.buying-process-main {margin: 0px 0 40px;}
+.login-2{ padding: 10px;}
+.buttonsection-bottom{ padding: 0 20px;}
+.prv-btn{ padding: 7px 40px 7px 40px;}
+.step-one{ width: 40px; height: 40px;}
+.num-step {font-size: 19px;line-height: 30px;}
+.step-tick {margin-top: 5px;}
+.cart-section-block::before{top: 19px; height: 5px;}
+.name-step-confirm{ top: 42px;}
+.price-plan-box{background-color: #ececec;}
+.title-p-details.select-sub-pln {margin: 30px auto 10px;text-align: center;}
+
+}

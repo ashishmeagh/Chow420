@@ -1,0 +1,13 @@
+
+echo -e "\nPurging Cloudflare Cache..."
+curl --location --request POST 'https://api.cloudflare.com/client/v4/zones/f5eacfca52c0501ab6212caa6447e27a/purge_cache' \
+--header 'Content-Type: application/json' \
+--header 'X-Auth-Email: chow@vliso.com' \
+--header 'X-Auth-Key: c140a6da5a6e5048577f17482d4e4f9e69d19' \
+--header 'Cookie: __cfduid=df23cb148f5cc8343f74b84f8e01a6a051591422301' \
+--data-raw '{
+        "purge_everything":true
+}'
+
+
+

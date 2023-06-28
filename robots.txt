@@ -1,0 +1,6 @@
+User-Agent: *
+Disallow: /uploads/id_proof
+Disallow: /uploads/seller_id_proof
+
+Sitemap: https://chow420.com/sitemap.xml
+

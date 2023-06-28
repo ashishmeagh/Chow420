@@ -1,0 +1,188 @@
+
+
+.form-plan-main-list{      margin: 0;
+    vertical-align: top;
+    background-color: #fff;
+}
+.product-no-fee {
+    margin-bottom: 20px;
+}
+.header-membr{     padding-top: 40px;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-color: #f3f3f3;
+    text-align: center;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -ms-background-size: 100% 100%;
+    background-size: 100% 100%;
+    height: 250px;
+}
+.productnms-plan {
+    font-size: 15px;
+}
+.product-month-plan {
+    font-size: 21px;
+    margin: 5px 0;
+}
+.signupnow{
+        padding: 11px 18px;
+    border-radius: 5px;
+    background-color: #020202;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+}
+.signupnow:hover, .signupnow:focus{
+    background-color: #b833cb;
+    color: #fff;
+}
+.button-signupnow{text-align: center;}
+.mainwhite-plan {
+    background-color: #fff;
+    padding: 10px;
+    text-align: left;
+}
+.mainwhite-plan ul {padding-left: 0px;}
+.mainwhite-plan ul li{
+       font-size: 12px;
+    margin-bottom: 4px;
+    color: #696969;
+    display: block;
+}
+.mainwhite-plan ul li span{
+    display: inline-block; font-weight: 300;
+}
+.title-features {
+    font-size: 15px;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.membership-mainforum{
+        margin: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    margin-left: -1rem;
+    flex-flow: row wrap;
+}
+
+
+
+
+
+
+
+
+
+/*Radio Buttons*/
+span.icon-f-p {
+    width: 50px;
+    height: 50px;
+    display: block;
+    background-color: #f5f5f5;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+}
+.radio-btn p{height: 45px; overflow: hidden;margin: 0px; padding: 0px; 
+/*text-overflow: ellipsis;white-space: nowrap;*/}
+.interior-icon {margin-top: 15px;}
+.team-div{width: 87px;height: 2px; background:#d1d1d1;margin: 10px auto;}
+.radio-sections {margin: 0 -0.5%; display: flex;}
+.radio-sections .radio-btn{    
+    text-align: left;
+    display: block;
+    position: relative;
+    float: left;
+    width: 32%;
+    margin: 1% 0.6%;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    background: #fff;}
+.radio-sections .radio-btn input[type=radio]{position: absolute;visibility: hidden;}
+.radio-sections .radio-btn label{width: 100%;height: 100%;
+    font-weight: normal;color: #4f4f4f; text-align: center;
+    position: relative;font-size: 16px;z-index: 9;cursor: 
+    pointer; -webkit-transition: all 0.25s linear;
+    padding:  0px;
+    display: block;
+    margin: 0px;
+ /*   -webkit-box-shadow: 0 0.1rem 0 0 rgba(0,0,0,.25);
+    box-shadow: 0 0.1rem 0 0 rgba(0,0,0,.25);*/
+    background: #fff;
+    border: .1rem solid #ddd;
+}
+.radio-sections .radio-btn .check{display: block;position: absolute;border: 1px solid #AAAAAA;height: 100%;width: 100%;top: 0;left: 0px;z-index: 5;transition: border .25s linear; -webkit-transition: border .25s linear;}
+.radio-sections .radio-btn .check::before {width: 100%;height: 100%;border-radius: 100%;content: "";display: block;left:0;margin: auto;position: absolute;top: 0;transition: background 0.25s linear 0s;}
+.radio-sections input[type=radio]:checked ~ .check {border: 2px solid #873dc8;}
+.radio-sections input[type=radio]:checked ~ .check::before{background:transparent;}
+.radio-sections input[type=radio]:checked ~ label{  color: #873dc8; border: 2px solid #873dc8;}
+@media all and (max-width:800px) {
+    .radio-sections .radio-btn{max-width: 100%;}
+
+}
+@media all and (max-width:550px) {
+    .radio-sections .radio-btn{float: none; width: 96%; margin: 0 auto 10px;}
+}
+
+/** Login 20 start **/
+
+
+
+
+
+
+@media all and (max-width:767px){
+
+    .membership-mainforum{display: block;    margin-left: 0;    flex-flow: inherit;}
+ 
+}
+@media (max-width: 500px) {
+.radio-sections{display: block;}
+
+    .link-box-rights {
+    float: none;
+}
+.db-link{ float: none; margin-bottom: 5px;}
+    .rightsearch-div {
+    margin-left: 0px;
+}
+.leftbutton-what{float: none;}
+    .forum-video iframe{height: 300px;}
+  .video-inout-link input {
+    width: 100%;
+    height: 35px;
+    padding: 5px; 
+    margin-top: 0;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+.searchbox-input{width: 100%; float: none;}
+.clear-filter {
+    background-color: #873dc8;
+    display: block;
+    padding: 0px 20px;
+    border-radius: 5px;
+    color: #fff; margin-bottom: 10px;
+    height: 43px;
+    line-height: 43px;
+    float: none;
+}
+.video-inout-link span {
+    float: none;
+    display: block;
+    line-height: 23px;
+}
+span#youtubeerr{ left: 0 !important;}
+}
+

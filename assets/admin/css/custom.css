@@ -1,0 +1,16 @@
+.red{
+	color: #D94020;
+}
+
+.small-form-control{
+	background-color: #fff;
+    border: 1px solid #e4e7ea;
+    border-radius: 0;
+    box-shadow: none;
+    color: #565656;
+    height: 38px;
+    max-width: 72%;
+    width: 153px;
+    padding: 7px 12px;
+    transition: all 300ms linear 0s;
+}
